@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="383017bb-7e6b-4d34-9cb5-1f06c765ff47" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Customer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Date.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,21 +25,17 @@
   </component>
   <component name="ProjectId" id="1TwjivcOemPb1WlYKf1egu0Xh3l" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true">
@@ -55,6 +53,18 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -81,5 +91,49 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="394" y="81" key="#com.intellij.ide.util.MemberChooser" timestamp="1575209556275">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state x="394" y="81" key="#com.intellij.ide.util.MemberChooser/0.23.1280.723@0.23.1280.723" timestamp="1575209556275" />
+    <state width="1218" height="210" key="GridCell.Tab.0.bottom" timestamp="1575248982554">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state width="1218" height="210" key="GridCell.Tab.0.bottom/0.23.1280.723@0.23.1280.723" timestamp="1575248982554" />
+    <state width="1218" height="118" key="GridCell.Tab.0.bottom/0.23.1280.724@0.23.1280.724" timestamp="1575221572116" />
+    <state width="1218" height="118" key="GridCell.Tab.0.bottom/0.23.1280.726@0.23.1280.726" timestamp="1575217099568" />
+    <state width="1218" height="210" key="GridCell.Tab.0.center" timestamp="1575248982547">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state width="1218" height="210" key="GridCell.Tab.0.center/0.23.1280.723@0.23.1280.723" timestamp="1575248982547" />
+    <state width="1218" height="118" key="GridCell.Tab.0.center/0.23.1280.724@0.23.1280.724" timestamp="1575221572115" />
+    <state width="1218" height="118" key="GridCell.Tab.0.center/0.23.1280.726@0.23.1280.726" timestamp="1575217099567" />
+    <state width="1218" height="210" key="GridCell.Tab.0.left" timestamp="1575248982545">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state width="1218" height="210" key="GridCell.Tab.0.left/0.23.1280.723@0.23.1280.723" timestamp="1575248982545" />
+    <state width="1218" height="118" key="GridCell.Tab.0.left/0.23.1280.724@0.23.1280.724" timestamp="1575221572114" />
+    <state width="1218" height="118" key="GridCell.Tab.0.left/0.23.1280.726@0.23.1280.726" timestamp="1575217099566" />
+    <state width="1218" height="210" key="GridCell.Tab.0.right" timestamp="1575248982552">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state width="1218" height="210" key="GridCell.Tab.0.right/0.23.1280.723@0.23.1280.723" timestamp="1575248982552" />
+    <state width="1218" height="118" key="GridCell.Tab.0.right/0.23.1280.724@0.23.1280.724" timestamp="1575221572115" />
+    <state width="1218" height="118" key="GridCell.Tab.0.right/0.23.1280.726@0.23.1280.726" timestamp="1575217099568" />
+    <state x="123" y="23" key="SettingsEditor" timestamp="1575247337972">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state x="123" y="23" key="SettingsEditor/0.23.1280.723@0.23.1280.723" timestamp="1575247337972" />
+    <state x="123" y="23" key="SettingsEditor/0.23.1280.724@0.23.1280.724" timestamp="1575206837242" />
+    <state x="328" y="204" key="com.intellij.ide.util.TipDialog" timestamp="1575248283668">
+      <screen x="0" y="23" width="1280" height="723" />
+    </state>
+    <state x="328" y="204" key="com.intellij.ide.util.TipDialog/0.23.1280.723@0.23.1280.723" timestamp="1575248283668" />
+    <state x="328" y="205" key="com.intellij.ide.util.TipDialog/0.23.1280.728@0.23.1280.728" timestamp="1575200035982" />
+    <state x="300" y="71" width="670" height="676" key="search.everywhere.popup" timestamp="1575221761887">
+      <screen x="0" y="23" width="1280" height="724" />
+    </state>
+    <state x="300" y="71" width="670" height="676" key="search.everywhere.popup/0.23.1280.724@0.23.1280.724" timestamp="1575221761887" />
   </component>
 </project>
