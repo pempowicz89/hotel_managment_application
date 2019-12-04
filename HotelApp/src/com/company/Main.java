@@ -195,12 +195,12 @@ public class Main {
                             rightInput = true;
                         } else {
                             rightInput = false;
-                            System.out.println("Invalid input. Amount of beds must be entered accordingly: " +
+                            System.out.println("Invalid input. Number of beds must be entered accordingly: " +
                                     "1, 2 or 4. \nTry again:");
                         }
                     } while (!rightInput);
 
-                    System.out.println("Enter room star (1-3): ");
+                    System.out.println("Enter The room star (1-3): ");
                     do {
                         reply = input.nextLine();
                         try {
