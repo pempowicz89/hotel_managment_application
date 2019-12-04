@@ -8,17 +8,7 @@ public class Main {
 
     private Scanner input = new Scanner(System.in);
 
-
-    private enum Filter {
-        ALL, AVAILABLE, BOOKED,
-        NAME, SSN, PHONE, ADDRESS,
-        ADD, EDIT, REMOVE,
-        RNR, BEDS, BALCONY, PRICE,
-        ID, CHECKOUT,
-        ROOM,
-        USERNAME, PASSWORD
-
-    }
+    //arrays for adding user, booking, customer, and rooms
 
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
@@ -30,28 +20,23 @@ public class Main {
     private enum Access {ADMIN, GUEST}
 
 
-
-
-
-
     public static void main(String[] args) {
         Main hotelApp = new Main();
         hotelApp.runProgram();
     }
 
-        //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
-        Room room1 = new Room(1, 3, 0, 300);
-
-
-
     private void runProgram() {
         Scanner input2 = new Scanner(System.in);
         int choice;
+
+        //four of staffs or admins added manually
 
         listOfStaff.add(new User("Hassan", "Mousavi", true));
         listOfStaff.add(new User("Jens", "Lindström", true));
         listOfStaff.add(new User("Gustav", "Svensson", true));
         listOfStaff.add(new User("Dino", "Tuzlak", true));
+
+        //two guests or user added manually
 
         Customer cus1 = new Customer("Donald", "1234", false, "Donald",
                 "Trump", "123456789", "White House", "001001");
@@ -61,9 +46,6 @@ public class Main {
         lisOfCustomer.add(cus1);
         lisOfCustomer.add(cus2);
 
-        Room testRoom = new Room(432, 3, 1, 500);
-
-        listOfRooms.add(testRoom);
 
         do {
             printLogInMenu();
@@ -162,27 +144,104 @@ public class Main {
         System.out.println("New Customer added!");
     }
 
-    private void addRoom(){
-        //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
-        int roomNumber, numberOfBeds, balcony;
-        double pricePerNight;
-        System.out.println("What's the room number?");
-        roomNumber = input.nextInt();
+    private void addRoom() { // method adding room
 
-        System.out.println("How many beds are there?");
-        numberOfBeds = input.nextInt();
+        int roomNumber = 0;
+        int beds = 0;
+        int star = 0;
+        String select;
+        String reply;
+        boolean rightInput;
 
-        System.out.println("How many balconies are there?");
-        balcony = input.nextInt();
 
-        System.out.println("How much is the room per night?");
-        pricePerNight = input.nextDouble();
+        do {
+            System.out.println("--------Add Room--------");
+            System.out.println("|1. Register Room      |");
+            System.out.println("|2. Back to Start Menu |");
+            System.out.println("------------------------");
+            select = input.nextLine();
 
-        Room newRoom = new Room(roomNumber, numberOfBeds, balcony, pricePerNight);
-        listOfRooms.add(newRoom);
+            switch (select) {
+                case "1":
+                    System.out.println("Enter number of room: ");
+                    do {
+                        reply = input.nextLine();
+                        try {
+                            roomNumber = Integer.parseInt(reply);
+                            rightInput = true;
+                        } catch (NumberFormatException e) {
+                            rightInput = false;
+                        }
+                        if (0 < roomNumber) {
+                            rightInput = true;
+                        } else {
+                            rightInput = false;
+                            System.out.println("Invalid input. Number of room should be greater than 0" +
+                                    "\nTry again:");
+                        }
+                    } while (!rightInput);
 
-        System.out.println("New Room added!");
+                    System.out.println("Enter number of beds (1,2 or 4): ");
+                    do {
+                        reply = input.nextLine();
+                        try {
+                            beds = Integer.parseInt(reply);
+                            rightInput = true;
+                        } catch (NumberFormatException e) {
+                            rightInput = false;
+                        }
+
+                        if (beds == 1 || beds == 2 || beds == 4) {
+                            rightInput = true;
+                        } else {
+                            rightInput = false;
+                            System.out.println("Invalid input. Amount of beds must be entered accordingly: " +
+                                    "1, 2 or 4. \nTry again:");
+                        }
+                    } while (!rightInput);
+
+                    System.out.println("Enter room star (1-3): ");
+                    do {
+                        reply = input.nextLine();
+                        try {
+                            star = Integer.parseInt(reply);
+                            rightInput = true;
+                        } catch (NumberFormatException e) {
+                            rightInput = false;
+                        }
+                        if (star == 1 || star == 2 || star == 3) {
+                            rightInput = true;
+                            try {
+                                Room newRoom = new Room(roomNumber, beds, star);
+                                listOfRooms.add(newRoom);
+                                System.out.println("New room has been created!");
+                            }catch(IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                            }
+                            System.out.println("Back (Enter)");
+                            input.nextLine();
+                        } else {
+                            rightInput = false;
+                            System.out.println("Invalid input. Star must be entered accordingly: 1-3." +
+                                    "\nTry again:");
+                        }
+
+                    } while (!rightInput);
+
+                    break;
+
+                case "2":
+                    System.out.println("Returning to the previous menu!");
+                    break;
+
+                default:
+                    System.out.println("Faulty input recognized. Try again!\nPress (Enter)");
+                    input.nextLine();
+                    break;
+            }
+        } while (!select.equalsIgnoreCase("1") && !select.equalsIgnoreCase("0"));
     }
+
 
     private void viewCustomerInfo() {
 

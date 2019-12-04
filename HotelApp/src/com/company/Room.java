@@ -1,85 +1,63 @@
 package com.company;
 
+
 public class Room {
 
-    private static int idCounter = 0;
-    private final int roomId = ++idCounter;
     private int roomNumber;
-    private int numberOfBeds;
-    private int Balcony;
-    private double pricePerNight;
-    private boolean booked = false;
+    private int beds;
+    private int star;
 
 
-    public Room(int roomNumber, int numberOfBeds, int balcony, double pricePerNight) {
+    public Room(int roomNumber, int beds, int star) {
         this.roomNumber = roomNumber;
-        this.numberOfBeds = numberOfBeds;
-        Balcony = balcony;
-        this.pricePerNight = pricePerNight;
+        if(beds == 1 || beds == 2 || beds == 4) {
+            this.beds = beds;
+        }else{
+            throw new IllegalArgumentException(
+                    "Number of beds in a room can only be 1, 2 or 4.");
+        }
+        if (star == 1 || star == 2 || star == 3) {
+            this.star = star;
+        }else {
+            throw new IllegalArgumentException(
+                    "Star only rank 1-3.");
+        }
     }
 
-    public static int getIdCounter() {
-        return idCounter;
-    }
-
-    public static void setIdCounter(int idCounter) {
-        Room.idCounter = idCounter;
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
 
     public int getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
-        this.roomNumber = roomNumber;
+    public int getBeds() {
+        return beds;
     }
 
-    public int getNumberOfBeds() {
-        return numberOfBeds;
+    public void setBeds (int beds) {
+        if(beds == 1 || beds == 2 || beds == 4) {
+            this.beds = beds;
+        }else{
+            throw new IllegalArgumentException(
+                    "Number of beds in a room can only be 1, 2 or 4.");
+        }
     }
 
-    public void setNumberOfBeds(int numberOfBeds) {
-        this.numberOfBeds = numberOfBeds;
+    public int getStar() {
+        return star;
     }
 
-    public int getBalcony() {
-        return Balcony;
+    public void setStar(int star) {
+        if (star == 1 || star == 2 || star == 3) {
+            this.star = star;
+        } else {
+            throw new IllegalArgumentException(
+                    "Standards only rank 1-3.");
+        }
     }
 
-    public void setBalcony(int balcony) {
-        Balcony = balcony;
+    @Override
+    public String toString(){
+        return String.format ("%s%-4d%s%-2d%s%-2d", "Room number: ", roomNumber, "Beds: ", beds, "Star: ", star);
     }
 
-    public double getPricePerNight() {
-        return pricePerNight;
-    }
-
-    public void setPricePerNight(double pricePerNight) {
-        this.pricePerNight = pricePerNight;
-    }
-
-    public boolean isBooked() {
-        return booked;
-    }
-
-    public void setBooked(boolean booked) {
-        this.booked = booked;
-    }
-
-
-    public String toString() {
-        return " " +
-                "--------------------------------"  +
-                "\nRoom Id          =  " + getRoomId() +
-                "\nRoom Number      = '" + getRoomNumber() + '\'' +
-                "\nBeds             = '" + getNumberOfBeds() + '\'' +
-                "\nBalcony          = '" + getBalcony() + '\'' +
-                "\nPrice per Night  = '" + getPricePerNight() + '\'' +
-                "\nBooked           = '" + isBooked() + '\'' +
-                "\n";
-    }
 }
