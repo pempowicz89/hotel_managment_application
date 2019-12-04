@@ -24,19 +24,12 @@ public class Main {
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
     private ArrayList<Customer> lisOfCustomer = new ArrayList<>();
-<<<<<<< HEAD
     private ArrayList<Room> listOfRooms = new ArrayList<>();
     private Date today = new Date ( 2019, 11, 25, 12, 14 );
-=======
-    private Date today = new Date(2019, 11, 25, 12, 14);
->>>>>>> 2d3ddf4269ee2f67bfab4b912a9a9897764ce933
 
     private enum Access {ADMIN, GUEST}
 
-    Customer cus1 = new Customer("Donald", "1234", false, "Donald",
-            "Trump", "123456789", "White House", "001001");
-    Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
-            "Putin", "987654321", "Kremlin", "002002");
+
 
 
 
@@ -46,16 +39,9 @@ public class Main {
         hotelApp.runProgram();
     }
 
-<<<<<<< HEAD
-        Customer cus1 = new Customer("Donald", "1234", false, "Donald",
-                "Trump", "123456789", "White House", "001001");
-        Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
-                "Putin", "987654321", "Kremlin", "002002");
-
         //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
         Room room1 = new Room(1, 3, 0, 300);
-        
-=======
+
     private void runProgram() {
         Scanner input2 = new Scanner(System.in);
         int choice;
@@ -65,6 +51,13 @@ public class Main {
         listOfStaff.add(new User("Gustav", "Svensson", true));
         listOfStaff.add(new User("Dino", "Tuzlak", true));
 
+        Customer cus1 = new Customer("Donald", "1234", false, "Donald",
+                "Trump", "123456789", "White House", "001001");
+        Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
+                "Putin", "987654321", "Kremlin", "002002");
+
+        lisOfCustomer.add(cus1);
+        lisOfCustomer.add(cus2);
 
         do {
             printLogInMenu();
@@ -76,7 +69,6 @@ public class Main {
             }
         } while (choice != 2);
     }
->>>>>>> 2d3ddf4269ee2f67bfab4b912a9a9897764ce933
 
     private void printLogInMenu() {
         System.out.println("Login Menu");
@@ -119,12 +111,14 @@ public class Main {
             } else if (select == 3) {
             } else if (select == 4) {
             } else if (select == 5) {
+                hotelApp.addRoom();
             } else if (select == 6) {
             } else if (select == 7) {
             } else if (select == 8) {
             } else if (select == 9) {
                 hotelApp.viewCustomerInfo();
             } else if (select == 10) {
+                hotelApp.viewRoomInfo();
             } else if (select == 11) {
 
             }
@@ -133,22 +127,67 @@ public class Main {
 
 
     private void addCustomer() {
-        String firstName, lastName, ssn, phoneNumber, address;
-        int counter = 0;
-        String stringChoice;
-        input.nextLine();
+        String userName, password, firstName, lastName, ssn, phoneNumber, address;
 
+        System.out.println("What's the customer User Name?");
+        userName = input.nextLine();
 
+        System.out.println("What's the costumer Password?");
+        password = input.nextLine();
+
+        System.out.println("What's the customer First Name?");
+        firstName = input.nextLine();
+
+        System.out.println("What's the customer Last Name?");
+        lastName = input.nextLine();
+
+        System.out.println("What's the customer SSN?");
+        ssn = input.nextLine();
+
+        System.out.println("What's the customer Address?");
+        address = input.nextLine();
+
+        System.out.println("What's the customer Phone Number?");
+        phoneNumber = input.nextLine();
+
+        Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address, phoneNumber);
+        lisOfCustomer.add(newCustomer);
+
+        System.out.println("New Customer added!");
+    }
+
+    private void addRoom(){
+        //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
+        int roomNumber, numberOfBeds, balcony;
+        double pricePerNight;
+        System.out.println("What's the room number?");
+        roomNumber = input.nextInt();
+
+        System.out.println("How many beds are there?");
+        numberOfBeds = input.nextInt();
+
+        System.out.println("How many balconies are there?");
+        balcony = input.nextInt();
+
+        System.out.println("How much is the room per night?");
+        pricePerNight = input.nextDouble();
+
+        Room newRoom = new Room(roomNumber, numberOfBeds, balcony, pricePerNight);
+        listOfRooms.add(newRoom);
     }
 
     private void viewCustomerInfo() {
 
-        lisOfCustomer.add(cus1);
-        lisOfCustomer.add(cus2);
-
         System.out.println("      List Of Customers   ");
         for (Customer cus: lisOfCustomer){
             System.out.println(cus);
+        }
+    }
+    private void viewRoomInfo() {
+
+        System.out.println("      List Of Rooms   ");
+        for (Room room: listOfRooms){
+            System.out.println(room);
         }
     }
 }

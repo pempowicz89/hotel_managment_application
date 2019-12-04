@@ -69,4 +69,17 @@ public class Room {
     public void setBooked(boolean booked) {
         this.booked = booked;
     }
+
+    @Override
+    public String toString() {
+        return " " +
+                "--------------------------------"  +
+                "\nRoom Id          =  " + getRoomId() +
+                "\nRoom Number      = '" + getRoomNumber() + '\'' +
+                "\nBeds             = '" + getNumberOfBeds() + '\'' +
+                "\nBalcony          = '" + getBalcony() + '\'' +
+                "\nPrice per Night  = '" + getPricePerNight() + '\'' +
+                "\nBooked           = '" + isBooked() + '\'' +
+                "\n";
+    }
 }
