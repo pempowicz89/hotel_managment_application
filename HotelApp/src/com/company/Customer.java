@@ -52,4 +52,19 @@ public class Customer extends User {
     public void setTelephoneNumber(String telephoneNumber) {
         this.telephoneNumber = telephoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return " " +
+                "--------------------------------"  +
+                "\nCustomerId      =  " + customerId +
+                "\nfirstName       = '" + firstName + '\'' +
+                "\nlastName        = '" + lastName + '\'' +
+                "\nSSN             = '" + SSN + '\'' +
+                "\nAddress         = '" + Address + '\'' +
+                "\ntelephoneNumber = '" + telephoneNumber + '\'' +
+                "\n";
+    }
 }
+
+

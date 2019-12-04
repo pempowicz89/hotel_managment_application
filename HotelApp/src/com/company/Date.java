@@ -15,5 +15,14 @@ public class Date {
         this.minute = minute;
     }
 
-
+    @Override
+    public String toString() {
+        return "Date{" +
+                "year = " + year +
+                ", month = " + month +
+                ", day = " + day +
+                ", hour=" + hour +
+                ", minute=" + minute +
+                '}';
+    }
 }

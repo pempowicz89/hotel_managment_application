@@ -9,8 +9,4 @@ public class Booking {
     private Date checkIn;
     private Date checkOut;
 
-
-
-
-
 }
