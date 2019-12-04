@@ -70,7 +70,7 @@ public class Room {
         this.booked = booked;
     }
 
-    @Override
+
     public String toString() {
         return " " +
                 "--------------------------------"  +

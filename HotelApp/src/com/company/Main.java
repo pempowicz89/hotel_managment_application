@@ -42,6 +42,8 @@ public class Main {
         //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
         Room room1 = new Room(1, 3, 0, 300);
 
+
+
     private void runProgram() {
         Scanner input2 = new Scanner(System.in);
         int choice;
@@ -58,6 +60,10 @@ public class Main {
 
         lisOfCustomer.add(cus1);
         lisOfCustomer.add(cus2);
+
+        Room testRoom = new Room(432, 3, 1, 500);
+
+        listOfRooms.add(testRoom);
 
         do {
             printLogInMenu();
@@ -174,6 +180,8 @@ public class Main {
 
         Room newRoom = new Room(roomNumber, numberOfBeds, balcony, pricePerNight);
         listOfRooms.add(newRoom);
+
+        System.out.println("New Room added!");
     }
 
     private void viewCustomerInfo() {
