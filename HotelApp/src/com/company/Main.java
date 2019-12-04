@@ -11,6 +11,7 @@ public class Main {
     private ArrayList<User> listOfUsers = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
     private ArrayList<Customer> lisOfCustomer = new ArrayList<>();
+    private ArrayList<Room> listOfRooms = new ArrayList<>();
     private Date today = new Date ( 2019, 11, 25, 12, 14 );
 
     private enum Access {ADMIN, GUEST}
@@ -27,6 +28,9 @@ public class Main {
                 "Trump", "123456789", "White House", "001001");
         Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
                 "Putin", "987654321", "Kremlin", "002002");
+
+        //int roomNumber, int numberOfBeds, int balcony, double pricePerNight
+        Room room1 = new Room(1, 3, 0, 300);
         
 
 
