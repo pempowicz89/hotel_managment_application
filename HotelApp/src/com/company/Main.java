@@ -96,18 +96,25 @@ public class Main {
             if (select == 1) {
                 hotelApp.addCustomer();
             } else if (select == 2) {
+                System.out.println("Under Construction");
             } else if (select == 3) {
+                System.out.println("Under Construction");
             } else if (select == 4) {
+                System.out.println("Under Construction");
             } else if (select == 5) {
                 hotelApp.addRoom();
             } else if (select == 6) {
+                System.out.println("Under Construction");
             } else if (select == 7) {
+                System.out.println("Under Construction");
             } else if (select == 8) {
+                System.out.println("Under Construction");
             } else if (select == 9) {
                 hotelApp.viewCustomerInfo();
             } else if (select == 10) {
                 hotelApp.viewRoomInfo();
             } else if (select == 11) {
+                System.out.println("Under Construction");
 
             }
         } while (select != 12);
@@ -232,6 +239,9 @@ public class Main {
 
                 case "2":
                     System.out.println("Returning to the previous menu!");
+                    startMenu();
+                    handleEditMenu();
+
                     break;
 
                 default:
@@ -245,17 +255,19 @@ public class Main {
 
     private void viewCustomerInfo() {
 
-        System.out.println("      List Of Customers   ");
+        System.out.println("-----List Of Customers-----");
         for (Customer cus: lisOfCustomer){
             System.out.println(cus);
         }
+        System.out.println("---------------------------");
     }
     private void viewRoomInfo() {
 
-        System.out.println("      List Of Rooms   ");
+        System.out.println("-----List Of Rooms-----");
         for (Room room: listOfRooms){
             System.out.println(room);
         }
+        System.out.println("-----------------------");
     }
 }
 
