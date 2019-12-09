@@ -16,11 +16,11 @@ public class Room {
             throw new IllegalArgumentException(
                     "Number of beds in a room can only be 1, 2 or 4.");
         }
-        if (star == 1 || star == 2 || star == 3) {
+        if (star == 1 || star == 2 || star == 3 || star == 4 || star == 5 ) {
             this.star = star;
         }else {
             throw new IllegalArgumentException(
-                    "Star only rank 1-3.");
+                    "Star only rank 1-5.");
         }
     }
 
