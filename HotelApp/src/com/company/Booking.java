@@ -6,8 +6,8 @@ public class Booking {
     private String customer;
     private int roomNumber;
     private double totalPrice;
-    private Date checkIn;
-    private Date checkOut;
+    private String checkIn;
+    private String checkOut;
 
     public int getBookingId() {
         return bookingId;
@@ -41,19 +41,19 @@ public class Booking {
         this.totalPrice = totalPrice;
     }
 
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
 
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
 
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
 }

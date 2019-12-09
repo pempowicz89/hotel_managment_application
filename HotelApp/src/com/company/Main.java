@@ -151,6 +151,25 @@ public class Main {
         System.out.println("New Customer added!");
     }
 
+    private void addBooking (){
+        String customer;
+        int bookingId, roomNumber;
+        String checkIn;
+        String checkOut;
+        double totalPrice;
+
+        System.out.println("Welcome to our booking services!");
+        System.out.println("If you wish to see what rooms are available go back to the previous menu and press 11!");
+        System.out.print("Please enter the room id that you wish to stay in: ");
+        bookingId = input.nextInt();
+        System.out.print("Please enter when you will check in: ");
+        checkIn = input.nextLine();
+        System.out.print("Please enter your check out date: ");
+        checkOut = input.nextLine();
+
+
+    }
+
     private void addRoom() { // method adding room
 
         int roomNumber = 0;
@@ -269,6 +288,8 @@ public class Main {
         }
         System.out.println("-----------------------");
     }
+
+
 }
 
 
