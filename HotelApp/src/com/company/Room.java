@@ -34,11 +34,11 @@ public class Room {
     }
 
     public void setBeds (int beds) {
-        if(beds == 1 || beds == 2 || beds == 4) {
+        if(beds == 1 || beds == 2 || beds == 3 || beds == 4) {
             this.beds = beds;
         }else{
             throw new IllegalArgumentException(
-                    "Number of beds in a room can only be 1, 2 or 4.");
+                    "Number of beds in a room can only be 1, 2, 3 or 4.");
         }
     }
 
