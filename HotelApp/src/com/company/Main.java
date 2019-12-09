@@ -188,7 +188,7 @@ public class Main {
                         }
                     } while (!rightInput);
 
-                    System.out.println("Enter number of beds (1,2 or 4): ");
+                    System.out.println("Enter number of beds (1,2,3 or 4): ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -198,16 +198,16 @@ public class Main {
                             rightInput = false;
                         }
 
-                        if (beds == 1 || beds == 2 || beds == 4) {
+                        if (beds == 1 || beds == 2 || beds == 3 || beds == 4) {
                             rightInput = true;
                         } else {
                             rightInput = false;
                             System.out.println("Invalid input. Number of beds must be entered accordingly: " +
-                                    "1, 2 or 4. \nTry again:");
+                                    "1, 2, 3 or 4. \nTry again:");
                         }
                     } while (!rightInput);
 
-                    System.out.println("Enter The room star (1-3): ");
+                    System.out.println("Enter The room star (3-5): ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -216,7 +216,7 @@ public class Main {
                         } catch (NumberFormatException e) {
                             rightInput = false;
                         }
-                        if (star == 1 || star == 2 || star == 3) {
+                        if (star == 3 || star == 4 || star == 5) {
                             rightInput = true;
                             try {
                                 Room newRoom = new Room(roomNumber, beds, star);
