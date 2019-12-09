@@ -10,11 +10,11 @@ public class Room {
 
     public Room(int roomNumber, int beds, int star) {
         this.roomNumber = roomNumber;
-        if(beds == 1 || beds == 2 || beds == 4) {
+        if(beds == 1 || beds == 2 || beds == 3|| beds == 4) {
             this.beds = beds;
         }else{
             throw new IllegalArgumentException(
-                    "Number of beds in a room can only be 1, 2 or 4.");
+                    "Number of beds in a room can only be 1, 2, 3 or 4.");
         }
         if (star == 1 || star == 2 || star == 3 || star == 4 || star == 5 ) {
             this.star = star;
@@ -47,11 +47,11 @@ public class Room {
     }
 
     public void setStar(int star) {
-        if (star == 1 || star == 2 || star == 3) {
+        if (star == 3 || star == 4 || star == 5) {
             this.star = star;
         } else {
             throw new IllegalArgumentException(
-                    "Standards only rank 1-3.");
+                    "Standards only rank 3-5.");
         }
     }
 
