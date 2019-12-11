@@ -81,7 +81,8 @@ public class Main {
         System.out.println("| 9.  View Customer             |");
         System.out.println("| 10. View Rooms                |");
         System.out.println("| 11. Search For All Booking    |");
-        System.out.println("| 12. Back                      |");
+        System.out.println("| 12. Add booking               |");
+        System.out.println("| 13. Back                      |");
         System.out.println("--------------------------------");
     }
 
@@ -115,9 +116,10 @@ public class Main {
                 hotelApp.viewRoomInfo();
             } else if (select == 11) {
                 System.out.println("Under Construction");
-
+            } else if (select == 12) {
+                hotelApp.addBooking();
             }
-        } while (select != 12);
+        } while (select != 13);
     }
 
 
