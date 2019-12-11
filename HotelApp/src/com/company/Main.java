@@ -13,7 +13,7 @@ public class Main {
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
-    private ArrayList<Customer> lisOfCustomer = new ArrayList<>();
+    private ArrayList<Customer> listOfCustomer = new ArrayList<>();
     private ArrayList<Room> listOfRooms = new ArrayList<>();
     private Date today = new Date ( 2019, 11, 25, 12, 14 );
 
@@ -43,8 +43,8 @@ public class Main {
         Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
                 "Putin", "987654321", "Kremlin", "002002");
 
-        lisOfCustomer.add(cus1);
-        lisOfCustomer.add(cus2);
+        listOfCustomer.add(cus1);
+        listOfCustomer.add(cus2);
 
 
         do {
@@ -148,7 +148,7 @@ public class Main {
         phoneNumber = input.nextLine();
 
         Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address, phoneNumber);
-        lisOfCustomer.add(newCustomer);
+        listOfCustomer.add(newCustomer);
 
         System.out.println("New Customer added!");
     }
@@ -170,8 +170,9 @@ public class Main {
         System.out.println("Welcome to our booking services!");
         System.out.print("Please enter your customer ID : ");
         customerId = input.nextInt();
-        for (int i = 0; i < lisOfCustomer.size(); i++){
-
+        Customer customer = findCustomerWithId(customerId);
+        if (customer == null) {
+            System.out.println("Does not exist");
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
@@ -291,15 +292,23 @@ public class Main {
         } while (!select.equalsIgnoreCase("1") && !select.equalsIgnoreCase("0"));
     }
 
+    private Customer findCustomerWithId(int customerId) {
+        for (int i = 0; i < listOfCustomer.size(); i++) {
+            if (listOfCustomer.get(i).getCustomerId() == customerId) {
+                return listOfCustomer.get(i);
+            }
+        }
+        return null;
+    }
 
     private void viewCustomerInfo() {
-
         System.out.println("-----List Of Customers-----");
-        for (Customer cus: lisOfCustomer){
+        for (Customer cus: listOfCustomer){
             System.out.println(cus);
         }
         System.out.println("---------------------------");
     }
+
     private void viewRoomInfo() {
 
         System.out.println("-----List Of Rooms-----");
