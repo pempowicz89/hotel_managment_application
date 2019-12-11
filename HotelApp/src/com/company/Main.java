@@ -160,10 +160,10 @@ public class Main {
         String checkOut;
         double totalPrice;
         int choice;
-        System.out.println("If you wish to see what rooms are available go back to the previous menu and press 11!");
+        System.out.println("If you wish to see what rooms are available press 10!");
         choice = input.nextInt();
-        if (choice == 11){
-            handleEditMenu();
+        if (choice == 10){
+            viewRoomInfo();
         }
 
         System.out.println("Welcome to our booking services!");
