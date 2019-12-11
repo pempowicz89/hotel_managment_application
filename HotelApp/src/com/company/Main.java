@@ -159,8 +159,9 @@ public class Main {
         String checkIn;
         String checkOut;
         double totalPrice;
+        String printCus;
         int choice;
-        System.out.println("If you wish to see what rooms are available type in 10! If you wish to proceed type in 10");
+        System.out.println("If you wish to see what rooms are available type in 10!");
         System.out.print("If you wish to proceed type in 11: ");
         choice = input.nextInt();
         if (choice == 10){
@@ -173,6 +174,8 @@ public class Main {
         Customer customer = findCustomerWithId(customerId);
         if (customer == null) {
             System.out.println("Does not exist");
+        } else {
+            System.out.println(customer);
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
