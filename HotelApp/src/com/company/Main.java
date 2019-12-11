@@ -152,20 +152,29 @@ public class Main {
     }
 
     private void addBooking (){
-        String customer;
+        int customerId;
         int bookingId, roomNumber;
         String checkIn;
         String checkOut;
         double totalPrice;
+        int choice;
+        System.out.println("If you wish to see what rooms are available go back to the previous menu and press 11!");
+        choice = input.nextInt();
+        if (choice == 11){
+            handleEditMenu();
+        }
 
         System.out.println("Welcome to our booking services!");
-        System.out.println("If you wish to see what rooms are available go back to the previous menu and press 11!");
+
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
         System.out.print("Please enter when you will check in: ");
         checkIn = input.nextLine();
         System.out.print("Please enter your check out date: ");
         checkOut = input.nextLine();
+//        Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
+
+
 
 
     }
