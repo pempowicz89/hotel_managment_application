@@ -171,7 +171,7 @@ public class Main {
         System.out.print("Please enter your customer ID : ");
         customerId = input.nextInt();
         for (int i = 0; i < lisOfCustomer.size(); i++){
-        
+
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
