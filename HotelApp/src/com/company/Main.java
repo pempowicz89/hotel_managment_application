@@ -160,20 +160,29 @@ public class Main {
         String checkOut;
         double totalPrice;
         int choice;
-        System.out.println("If you wish to see what rooms are available press 10!");
+        System.out.println("If you wish to see what rooms are available type in 10! If you wish to proceed type in 10");
+        System.out.print("If you wish to proceed type in 11: ");
         choice = input.nextInt();
         if (choice == 10){
             viewRoomInfo();
-        }
+        }else if (choice == 11)
 
         System.out.println("Welcome to our booking services!");
+        System.out.print("Please enter your customer ID : ");
+        customerId = input.nextInt();
+        for (int i = 0; i < lisOfCustomer.size(); i++){
+        
+        }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
+
         System.out.print("Please enter when you will check in: ");
         checkIn = input.nextLine();
+
         System.out.print("Please enter your check out date: ");
         checkOut = input.nextLine();
+
 //        Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
