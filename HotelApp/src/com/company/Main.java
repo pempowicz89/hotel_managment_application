@@ -13,7 +13,7 @@ public class Main {
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
-    private ArrayList<Customer> lisOfCustomer = new ArrayList<>();
+    private ArrayList<Customer> listOfCustomer = new ArrayList<>();
     private ArrayList<Room> listOfRooms = new ArrayList<>();
     private Date today = new Date ( 2019, 11, 25, 12, 14 );
 
@@ -38,10 +38,13 @@ public class Main {
 
         //two guests or user added manually
 
-        //Customer cus1 = new Customer("Donald", "1234", false, "Donald", "Trump", "123456789", "White House", "001001");
-        //Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir", "Putin", "987654321", "Kremlin", "002002");
-        //lisOfCustomer.add(cus1);
-        //lisOfCustomer.add(cus2);
+        /*Customer cus1 = new Customer("Donald", "1234", false, "Donald",
+                "Trump", "123456789", "White House", "001001");
+        Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
+                "Putin", "987654321", "Kremlin", "002002");
+
+        listOfCustomer.add(cus1);
+        listOfCustomer.add(cus2);*/
 
 
         do {
@@ -78,7 +81,8 @@ public class Main {
         System.out.println("| 9.  View Customer             |");
         System.out.println("| 10. View Rooms                |");
         System.out.println("| 11. Search For All Booking    |");
-        System.out.println("| 12. Back                      |");
+        System.out.println("| 12. Add booking               |");
+        System.out.println("| 13. Back                      |");
         System.out.println("--------------------------------");
     }
 
@@ -113,9 +117,10 @@ public class Main {
                 hotelApp.viewRoomInfo();
             } else if (select == 11) {
                 System.out.println("Under Construction");
-
+            } else if (select == 12) {
+                hotelApp.addBooking();
             }
-        } while (select != 12);
+        } while (select != 13);
     }
 
 
@@ -144,7 +149,7 @@ public class Main {
         phoneNumber = input.nextLine();
 
         Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address, phoneNumber);
-        lisOfCustomer.add(newCustomer);
+        listOfCustomer.add(newCustomer);
 
         System.out.println("New Customer added!");
     }
@@ -159,14 +164,14 @@ public class Main {
         customerID = input.nextInt();
         input.nextLine();
 
-        for (int i = 0; i < lisOfCustomer.size(); i++) {
-            if (customerID == lisOfCustomer.get(i).getCustomerId()){
-                int chosenCustomer = lisOfCustomer.get(i).getCustomerId();
-                System.out.println(lisOfCustomer.get(i).getCustomerId());
-                System.out.println(lisOfCustomer.get(i).getFirstName());
-                System.out.println(lisOfCustomer.get(i).getLastName());
-                System.out.println(lisOfCustomer.get(i).getSSN());
-                System.out.println(lisOfCustomer.get(i).getAddress());
+        for (int i = 0; i < listOfCustomer.size(); i++) {
+            if (customerID == listOfCustomer.get(i).getCustomerId()){
+                int chosenCustomer = listOfCustomer.get(i).getCustomerId();
+                System.out.println(listOfCustomer.get(i).getCustomerId());
+                System.out.println(listOfCustomer.get(i).getFirstName());
+                System.out.println(listOfCustomer.get(i).getLastName());
+                System.out.println(listOfCustomer.get(i).getSSN());
+                System.out.println(listOfCustomer.get(i).getAddress());
                 foundID = true;
                 System.out.println("Is this the Customer you want to remove? Y/N");
                 select = input.nextLine();
@@ -174,14 +179,14 @@ public class Main {
                 switch (select) {
                     case "y" :
                     case "yes": {
-                        System.out.println("Customer with ID " + lisOfCustomer.get(i).getCustomerId() + " has been " +
+                        System.out.println("Customer with ID " + listOfCustomer.get(i).getCustomerId() + " has been " +
                                 "removed! Press Enter to Continue");
-                        lisOfCustomer.remove(i);
+                        listOfCustomer.remove(i);
                         input.nextLine();
                     }
                     case "n" :
                     case "no" : {
-                        System.out.println("Customer with ID " + lisOfCustomer.get(i).getCustomerId() + " has not been" +
+                        System.out.println("Customer with ID " + listOfCustomer.get(i).getCustomerId() + " has not been" +
                                 "removed! Press Enter to Continue");
                         input.nextLine();
                     }
@@ -210,9 +215,9 @@ public class Main {
         customerID = input.nextInt();
         input.nextLine();
 
-        for (int i = 0; i < lisOfCustomer.size(); i++) {
-            if (customerID == lisOfCustomer.get(i).getCustomerId()){
-                int chosenCustomer = lisOfCustomer.get(i).getCustomerId();
+        for (int i = 0; i < listOfCustomer.size(); i++) {
+            if (customerID == listOfCustomer.get(i).getCustomerId()){
+                int chosenCustomer = listOfCustomer.get(i).getCustomerId();
 
                 System.out.println("What do you want to change?");
                 System.out.println("1. Username");
@@ -227,53 +232,53 @@ public class Main {
 
                 switch (select){
                     case "1":{
-                        System.out.println("Current Username:" + lisOfCustomer.get(i).getUserName());
+                        System.out.println("Current Username:" + listOfCustomer.get(i).getUserName());
                         System.out.println("Input new Username:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setUserName(newData);
+                        listOfCustomer.get(i).setUserName(newData);
                     }
                     case "2":{
-                        System.out.println("Current Password:" + lisOfCustomer.get(i).getPassword());
+                        System.out.println("Current Password:" + listOfCustomer.get(i).getPassword());
                         System.out.println("Input new Password:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setPassword(newData);
+                        listOfCustomer.get(i).setPassword(newData);
                     }
                     case "3":{
-                        System.out.println("Current First Name:" + lisOfCustomer.get(i).getFirstName());
+                        System.out.println("Current First Name:" + listOfCustomer.get(i).getFirstName());
                         System.out.println("Input new First Name:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setFirstName(newData);
+                        listOfCustomer.get(i).setFirstName(newData);
                     }
                     case "4": {
-                        System.out.println("Current Last Name:" + lisOfCustomer.get(i).getLastName());
+                        System.out.println("Current Last Name:" + listOfCustomer.get(i).getLastName());
                         System.out.println("Input new Last Name:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setLastName(newData);
+                        listOfCustomer.get(i).setLastName(newData);
                     }
                     case "5":{
-                        System.out.println("Current SSN:" + lisOfCustomer.get(i).getSSN());
+                        System.out.println("Current SSN:" + listOfCustomer.get(i).getSSN());
                         System.out.println("Input new SSN:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setSSN(newData);
+                        listOfCustomer.get(i).setSSN(newData);
                     }
                     case "6":{
-                        System.out.println("Current Address:" + lisOfCustomer.get(i).getAddress());
+                        System.out.println("Current Address:" + listOfCustomer.get(i).getAddress());
                         System.out.println("Input new Address:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setAddress(newData);
+                        listOfCustomer.get(i).setAddress(newData);
                     }
                     case "7":{
-                        System.out.println("Current Phone Number:" + lisOfCustomer.get(i).getTelephoneNumber());
+                        System.out.println("Current Phone Number:" + listOfCustomer.get(i).getTelephoneNumber());
                         System.out.println("Input new Phone Number:");
                         newData = input.nextLine();
 
-                        lisOfCustomer.get(i).setTelephoneNumber(newData);
+                        listOfCustomer.get(i).setTelephoneNumber(newData);
                     }
                 }
             }
@@ -282,20 +287,39 @@ public class Main {
     }
 
     private void addBooking (){
-        String customer;
+        int customerId;
         int bookingId, roomNumber;
         String checkIn;
         String checkOut;
         double totalPrice;
+        int choice;
+        System.out.println("If you wish to see what rooms are available type in 10! If you wish to proceed type in 10");
+        System.out.print("If you wish to proceed type in 11: ");
+        choice = input.nextInt();
+        if (choice == 10){
+            viewRoomInfo();
+        }else if (choice == 11)
 
         System.out.println("Welcome to our booking services!");
-        System.out.println("If you wish to see what rooms are available go back to the previous menu and press 11!");
+        System.out.print("Please enter your customer ID : ");
+        customerId = input.nextInt();
+        Customer customer = findCustomerWithId(customerId);
+        if (customer == null) {
+            System.out.println("Does not exist");
+        }
+
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
+
         System.out.print("Please enter when you will check in: ");
         checkIn = input.nextLine();
+
         System.out.print("Please enter your check out date: ");
         checkOut = input.nextLine();
+
+//        Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
+
+
 
 
     }
@@ -401,15 +425,23 @@ public class Main {
         } while (!select.equalsIgnoreCase("1") && !select.equalsIgnoreCase("0"));
     }
 
+    private Customer findCustomerWithId(int customerId) {
+        for (int i = 0; i < listOfCustomer.size(); i++) {
+            if (listOfCustomer.get(i).getCustomerId() == customerId) {
+                return listOfCustomer.get(i);
+            }
+        }
+        return null;
+    }
 
     private void viewCustomerInfo() {
-
         System.out.println("-----List Of Customers-----");
-        for (Customer cus: lisOfCustomer){
+        for (Customer cus: listOfCustomer){
             System.out.println(cus);
         }
         System.out.println("---------------------------");
     }
+
     private void viewRoomInfo() {
 
         System.out.println("-----List Of Rooms-----");
