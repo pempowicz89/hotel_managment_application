@@ -6,24 +6,59 @@ public class Room {
     private int roomNumber;
     private int beds;
     private int star;
+    private String hasBalcony;
+    private int price;
 
 
-    public Room(int roomNumber, int beds, int star) {
+    public Room(int roomNumber, int beds, int star, String hasBalcony, int price) {
         this.roomNumber = roomNumber;
-        if(beds == 1 || beds == 2 || beds == 3|| beds == 4) {
+        this.hasBalcony = hasBalcony;
+        if (beds == 1 || beds == 2 || beds == 3 || beds == 4) {
             this.beds = beds;
-        }else{
+        } else {
             throw new IllegalArgumentException(
                     "Number of beds in a room can only be 1, 2, 3 or 4.");
         }
-        if (star == 1 || star == 2 || star == 3 || star == 4 || star == 5 ) {
+        if (star == 3 || star == 4 || star == 5) {
             this.star = star;
-        }else {
+        } else {
             throw new IllegalArgumentException(
                     "Star only rank 1-5.");
         }
+        if (price > 0 && price <= 4000) {
+            this.price = price;
+
+        } else {
+            throw new IllegalArgumentException(
+                    "The price can not be less than 0 SEK or more than 4000 sek");
+        }
     }
 
+    public String getHasBalcony() {
+        return hasBalcony;
+    }
+
+    public void setHasBalcony(String hasBalcony) {
+        this.hasBalcony = hasBalcony;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        if (price > 0 && price < 4000) {
+            this.price = price;
+        } else {
+            throw new IllegalArgumentException(
+                    "The price can not be less than 0 SEK or more than 4000 sek");
+        }
+    }
+
+
+    public void setRoomNumber(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
 
     public int getRoomNumber() {
         return roomNumber;
@@ -33,10 +68,10 @@ public class Room {
         return beds;
     }
 
-    public void setBeds (int beds) {
-        if(beds == 1 || beds == 2 || beds == 3 || beds == 4) {
+    public void setBeds(int beds) {
+        if (beds == 1 || beds == 2 || beds == 3 || beds == 4) {
             this.beds = beds;
-        }else{
+        } else {
             throw new IllegalArgumentException(
                     "Number of beds in a room can only be 1, 2, 3 or 4.");
         }
@@ -56,9 +91,13 @@ public class Room {
     }
 
     @Override
-    public String toString(){
-        return String.format ("%s%-4d%s%-2d%s%-2d", "Room number: ", roomNumber,
-                "\nBeds: ", beds, "\nStar: ", star);
+    public String toString() {
+        return "" +
+                "roomNumber    " + roomNumber +
+                "\nbeds          " + beds +
+                "\nstar          " + star +
+                "\nhasBalcony    " + hasBalcony +
+                "\nprice         " + price +
+                ' ';
     }
-
 }

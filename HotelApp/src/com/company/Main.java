@@ -329,9 +329,13 @@ public class Main {
 
     private void addRoom() { // method adding room
 
+
+
         int roomNumber = 0;
         int beds = 0;
         int star = 0;
+        String hasBalcony = "No";
+        int price = 0;
         String select;
         String reply;
         boolean rightInput;
@@ -392,10 +396,42 @@ public class Main {
                         } catch (NumberFormatException e) {
                             rightInput = false;
                         }
+
                         if (star == 3 || star == 4 || star == 5) {
                             rightInput = true;
+                        } else {
+                            rightInput = false;
+                            System.out.println("Invalid input. Star must be entered accordingly: 1-3." +
+                                    "\nTry again:");
+                        }
+                    } while (!rightInput);
+
+                    System.out.println("Does the room has balcony? ");
+                    hasBalcony = input.nextLine();
+                        if (hasBalcony.equals("yes") || hasBalcony.equals("no")){
+                            rightInput = true;
+                        } else {
+                            rightInput = false;
+                            System.out.println("The answer should be (yes) or (no)" +
+                                    "\nTry again:");
+                        }
+
+
+
+
+                    System.out.println("Enter the price (0-4000): ");
+                    do {
+                        reply = input.nextLine();
+                        try {
+                            price = Integer.parseInt(reply);
+                            rightInput = true;
+                        } catch (NumberFormatException e) {
+                            rightInput = false;
+                        }
+                        if ( 0 < price && price <= 4000) {
+                            rightInput = true;
                             try {
-                                Room newRoom = new Room(roomNumber, beds, star);
+                                Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price );
                                 listOfRooms.add(newRoom);
                                 System.out.println("New room has been created!");
                             }catch(IllegalArgumentException e) {
@@ -405,7 +441,7 @@ public class Main {
                             input.nextLine();
                         } else {
                             rightInput = false;
-                            System.out.println("Invalid input. Star must be entered accordingly: 1-3." +
+                            System.out.println("Invalid input. \"The price can not be less than 0 SEK or more than 4000 sek" +
                                     "\nTry again:");
                         }
 
@@ -427,6 +463,7 @@ public class Main {
             }
         } while (!select.equalsIgnoreCase("1") && !select.equalsIgnoreCase("0"));
     }
+
 
     private Customer findCustomerWithId(int customerId) {
         for (int i = 0; i < listOfCustomer.size(); i++) {
