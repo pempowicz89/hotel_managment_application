@@ -296,7 +296,7 @@ public class Main {
         String printCus;
         int choice;
         System.out.println("If you wish to see what rooms are available type in 10!");
-        System.out.print("If you wish to proceed type in ay int: ");
+        System.out.print("If you wish to proceed type in any int: ");
         choice = input.nextInt();
         if (choice == 10) {
             viewRoomInfo();}
@@ -320,13 +320,13 @@ public class Main {
             System.out.println(rum);
         }
 
-        System.out.print("Please enter when you will check in: ");
+        System.out.println("Please enter when you will check in: ");
         checkIn = input.nextLine();
 
         System.out.print("Please enter your check out date: ");
         checkOut = input.nextLine();
 
-//        Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
+//      Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
     }
