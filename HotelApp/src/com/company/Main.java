@@ -296,11 +296,10 @@ public class Main {
         String printCus;
         int choice;
         System.out.println("If you wish to see what rooms are available type in 10!");
-        System.out.print("If you wish to proceed type in 11: ");
+        System.out.print("If you wish to proceed type in ay int: ");
         choice = input.nextInt();
         if (choice == 10) {
-            viewRoomInfo();
-        } else if (choice == 11)
+            viewRoomInfo();}
 
             System.out.println("Welcome to our booking services!");
         System.out.print("Please enter your customer ID : ");
@@ -314,6 +313,12 @@ public class Main {
 
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
+        Room rum = findRoomWithId(bookingId);
+        if (rum == null){
+            System.out.println("Does not exist");
+        } else {
+            System.out.println(rum);
+        }
 
         System.out.print("Please enter when you will check in: ");
         checkIn = input.nextLine();
@@ -523,6 +528,14 @@ public class Main {
         for (int i = 0; i < listOfCustomer.size(); i++) {
             if (listOfCustomer.get(i).getCustomerId() == customerId) {
                 return listOfCustomer.get(i);
+            }
+        }
+        return null;
+    }
+    private Room findRoomWithId(int roomId) {
+        for (int i = 0; i < listOfRooms.size(); i++) {
+            if (listOfRooms.get(i).getRoomNumber() == roomId) {
+                return listOfRooms.get(i);
             }
         }
         return null;
