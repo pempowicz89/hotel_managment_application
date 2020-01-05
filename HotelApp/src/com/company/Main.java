@@ -352,7 +352,7 @@ public class Main {
 
             switch (select) {
                 case "1":
-                    System.out.println("Enter number of room: ");
+                    System.out.println("Enter room Number: ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -408,7 +408,7 @@ public class Main {
                         }
                     } while (!rightInput);
 
-                    System.out.println("Does the room has balcony? ");
+                    System.out.println("Does the room has balcony?(yes/no) ");
                     hasBalcony = input.nextLine();
                     if (hasBalcony.equals("yes") || hasBalcony.equals("no")) {
                         rightInput = true;
@@ -419,7 +419,7 @@ public class Main {
                     }
 
 
-                    System.out.println("Enter the price (0-4000): ");
+                    System.out.println("Enter the price (1000 SEK - 1500 SEK - 1900 SEK - 2200 SEK ): ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -428,7 +428,7 @@ public class Main {
                         } catch (NumberFormatException e) {
                             rightInput = false;
                         }
-                        if (0 < price && price <= 4000) {
+                        if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
                             rightInput = true;
                             try {
                                 Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price);
@@ -441,7 +441,7 @@ public class Main {
                             input.nextLine();
                         } else {
                             rightInput = false;
-                            System.out.println("Invalid input. \"The price can not be less than 0 SEK or more than 4000 sek" +
+                            System.out.println("Invalid input. \"The options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 " +
                                     "\nTry again:");
                         }
 
