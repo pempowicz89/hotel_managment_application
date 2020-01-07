@@ -30,7 +30,7 @@ public class Room {
 
         } else {
             throw new IllegalArgumentException(
-                    "The options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 ");
+                    "The options for prices are 1000 SEK, 1500 SEK, 1900 SEK and 2200 ");
         }
     }
 

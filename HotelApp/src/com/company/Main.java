@@ -15,7 +15,11 @@ public class Main {
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
     private ArrayList<Customer> listOfCustomer = new ArrayList<>();
-    private ArrayList<Room> listOfRooms = new ArrayList<>();
+    private ArrayList<Room> listOfRooms = new ArrayList<>() {{
+        add(new Room(1, 2, 3, "yes", 1000));
+        add(new Room(2, 3, 4, "no", 1500));
+        add(new Room(3, 3, 5, "yes", 1900));
+    }};
     private Date today = new Date(2019, 11, 25, 12, 14);
 
     private enum Access {ADMIN, GUEST}
@@ -33,7 +37,8 @@ public class Main {
         RNR, BEDS, BALCONY, PRICE,
         ID, CHECKOUT,
         ROOM,
-        USERNAME, PASSWORD }
+        USERNAME, PASSWORD
+    }
 
 
     public static void main(String[] args) {
@@ -69,14 +74,14 @@ public class Main {
             System.out.println(">>");
             choice = input2.nextInt();
 
-            if (choice == 1){
+            if (choice == 1) {
                 password();
             }
 
         } while (choice != 2);
     }
 
-    private void password(){
+    private void password() {
         String choice2 = "";
         System.out.print("Please enter your password: ");
         choice2 = input.nextLine();
@@ -331,9 +336,10 @@ public class Main {
         System.out.print("If you wish to proceed type in any int: ");
         choice = input.nextInt();
         if (choice == 10) {
-            viewRoomInfo();}
+            viewRoomInfo();
+        }
 
-            System.out.println("Welcome to our booking services!");
+        System.out.println("Welcome to our booking services!");
         System.out.print("Please enter your customer ID : ");
         customerId = input.nextInt();
         Customer customer = findCustomerWithId(customerId);
@@ -346,7 +352,7 @@ public class Main {
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
         Room rum = findRoomWithId(bookingId);
-        if (rum == null){
+        if (rum == null) {
             System.out.println("Does not exist");
         } else {
             System.out.println(rum);
@@ -460,7 +466,7 @@ public class Main {
                         } catch (NumberFormatException e) {
                             rightInput = false;
                         }
-                        if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
+                        if (price == 1000 || price == 1500 || price == 1900 || price == 2200) {
                             rightInput = true;
                             try {
                                 Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price);
@@ -607,10 +613,10 @@ public class Main {
             do {
                 System.out.print("New Price per night: ");
                 price = input.nextInt();
-                if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
+                if (price == 1000 || price == 1500 || price == 1900 || price == 2200) {
                     System.out.println("\nHotel's price range for rooms are (1000 - 2200 SEK) / per night");
                 }
-            } while (price == 1000 || price == 1500 || price == 1900 || price ==2200 );
+            } while (price == 1000 || price == 1500 || price == 1900 || price == 2200);
             listOfRooms.get(index).setRoomNumber(roomNumber);
             listOfRooms.get(index).setBeds(beds);
             listOfRooms.get(index).setHasBalcony(hasBalcony);
@@ -758,10 +764,10 @@ public class Main {
             do {
                 System.out.print("New Price per night: ");
                 price = input.nextInt();
-                if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
+                if (price == 1000 || price == 1500 || price == 1900 || price == 2200) {
                     System.out.println("\nHotel's price range for rooms are (1000 - 2500 SEK) / per night");
                 }
-            } while (price == 1000 || price == 1500 || price == 1900 || price ==2200 );
+            } while (price == 1000 || price == 1500 || price == 1900 || price == 2200);
             listOfRooms.get(index).setPrice(price);
             System.out.println("\nRoom successfully updated");
         }
@@ -858,6 +864,7 @@ public class Main {
         }
         return null;
     }
+
     private Room findRoomWithId(int roomId) {
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (listOfRooms.get(i).getRoomNumber() == roomId) {
@@ -869,7 +876,7 @@ public class Main {
 
     private void viewCustomerInfo() {
         System.out.println("-----List Of Customers-----");
-        for (Customer cus: listOfCustomer){
+        for (Customer cus : listOfCustomer) {
             System.out.println(cus);
         }
         System.out.println("---------------------------");
@@ -878,7 +885,7 @@ public class Main {
     private void viewRoomInfo() {
 
         System.out.println("-----List Of Rooms-----");
-        for (Room room: listOfRooms){
+        for (Room room : listOfRooms) {
             System.out.println(room);
         }
         System.out.println("-----------------------");
