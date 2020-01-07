@@ -10,7 +10,7 @@ public class Main {
     private Scanner input = new Scanner(System.in);
 
     //arrays for adding user, booking, customer, and rooms
-
+    private final String passwordRegex = "((Dino)|(Jens)|(Gustav)|(Hassan))";
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
@@ -68,10 +68,27 @@ public class Main {
             System.out.println("Make your choice: ");
             System.out.println(">>");
             choice = input2.nextInt();
-            if (choice == 1) {
-                handleEditMenu();
+
+            if (choice == 1){
+                password();
             }
+
         } while (choice != 2);
+    }
+
+    private void password(){
+        String choice2 = "";
+        System.out.print("Please enter your password: ");
+        choice2 = input.nextLine();
+        while (!choice2.matches(passwordRegex)) {
+            System.out.println("Enter a valid password!: ");
+            System.out.println("To Exit type Return");
+            choice2 = input.nextLine();
+            if (choice2.equals("Return")) {
+                printLogInMenu();
+            }
+        }
+        handleEditMenu();
     }
 
     private void printLogInMenu() {
