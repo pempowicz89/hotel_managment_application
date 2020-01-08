@@ -10,15 +10,35 @@ public class Main {
     private Scanner input = new Scanner(System.in);
 
     //arrays for adding user, booking, customer, and rooms
-
+    private final String passwordRegex = "((Dino)|(Jens)|(Gustav)|(Hassan))";
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
     private ArrayList<Customer> listOfCustomer = new ArrayList<>();
-    private ArrayList<Room> listOfRooms = new ArrayList<>();
+    private ArrayList<Room> listOfRooms = new ArrayList<>() {{
+        add(new Room(1, 2, 3, "yes", 1000));
+        add(new Room(2, 3, 4, "no", 1500));
+        add(new Room(3, 3, 5, "yes", 1900));
+    }};
     private Date today = new Date(2019, 11, 25, 12, 14);
 
     private enum Access {ADMIN, GUEST}
+
+    private enum Motive {
+        VIEW, BOOKING, REMOVE,
+        CHECKOUT, NULL,
+        EDIT
+    }
+
+    private enum Filter {
+        ALL, AVAILABLE, BOOKED,
+        NAME, SSN, PHONE, ADDRESS,
+        ADD, EDIT, REMOVE,
+        RNR, BEDS, BALCONY, PRICE,
+        ID, CHECKOUT,
+        ROOM,
+        USERNAME, PASSWORD
+    }
 
 
     public static void main(String[] args) {
@@ -39,13 +59,13 @@ public class Main {
 
         //two guests or user added manually
 
-        /*Customer cus1 = new Customer("Donald", "1234", false, "Donald",
+        Customer cus1 = new Customer("Donald", "1234", false, "Donald",
                 "Trump", "123456789", "White House", "001001");
         Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
                 "Putin", "987654321", "Kremlin", "002002");
 
         listOfCustomer.add(cus1);
-        listOfCustomer.add(cus2);*/
+        listOfCustomer.add(cus2);
 
 
         do {
@@ -53,10 +73,27 @@ public class Main {
             System.out.println("Make your choice: ");
             System.out.println(">>");
             choice = input2.nextInt();
+
             if (choice == 1) {
-                handleEditMenu();
+                password();
             }
+
         } while (choice != 2);
+    }
+
+    private void password() {
+        String choice2 = "";
+        System.out.print("Please enter your password: ");
+        choice2 = input.nextLine();
+        while (!choice2.matches(passwordRegex)) {
+            System.out.println("Enter a valid password!: ");
+            System.out.println("To Exit type Return");
+            choice2 = input.nextLine();
+            if (choice2.equals("Return")) {
+                printLogInMenu();
+            }
+        }
+        handleEditMenu();
     }
 
     private void printLogInMenu() {
@@ -107,7 +144,7 @@ public class Main {
             } else if (select == 5) {
                 hotelApp.addRoom();
             } else if (select == 6) {
-                System.out.println("Under Construction");
+                hotelApp.printMenuEditRoom();
             } else if (select == 7) {
                 hotelApp.removeRoom();
             } else if (select == 8) {
@@ -310,9 +347,10 @@ public class Main {
         System.out.print("If you wish to proceed type in any int: ");
         choice = input.nextInt();
         if (choice == 10) {
-            viewRoomInfo();}
+            viewRoomInfo();
+        }
 
-            System.out.println("Welcome to our booking services!");
+        System.out.println("Welcome to our booking services!");
         System.out.print("Please enter your customer ID : ");
         customerId = input.nextInt();
         Customer customer = findCustomerWithId(customerId);
@@ -325,7 +363,7 @@ public class Main {
         System.out.print("Please enter the room id that you wish to stay in: ");
         bookingId = input.nextInt();
         Room rum = findRoomWithId(bookingId);
-        if (rum == null){
+        if (rum == null) {
             System.out.println("Does not exist");
         } else {
             System.out.println(rum);
@@ -363,7 +401,7 @@ public class Main {
 
             switch (select) {
                 case "1":
-                    System.out.println("Enter number of room: ");
+                    System.out.println("Enter room Number: ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -419,7 +457,7 @@ public class Main {
                         }
                     } while (!rightInput);
 
-                    System.out.println("Does the room has balcony? ");
+                    System.out.println("Does the room has balcony?(yes/no) ");
                     hasBalcony = input.nextLine();
                     if (hasBalcony.equals("yes") || hasBalcony.equals("no")) {
                         rightInput = true;
@@ -430,7 +468,7 @@ public class Main {
                     }
 
 
-                    System.out.println("Enter the price (0-4000): ");
+                    System.out.println("Enter the price (1000 SEK - 1500 SEK - 1900 SEK - 2200 SEK ): ");
                     do {
                         reply = input.nextLine();
                         try {
@@ -439,7 +477,7 @@ public class Main {
                         } catch (NumberFormatException e) {
                             rightInput = false;
                         }
-                        if (0 < price && price <= 4000) {
+                        if (price == 1000 || price == 1500 || price == 1900 || price == 2200) {
                             rightInput = true;
                             try {
                                 Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price);
@@ -452,7 +490,7 @@ public class Main {
                             input.nextLine();
                         } else {
                             rightInput = false;
-                            System.out.println("Invalid input. \"The price can not be less than 0 SEK or more than 4000 sek" +
+                            System.out.println("Invalid input. \"The options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 " +
                                     "\nTry again:");
                         }
 
@@ -473,6 +511,300 @@ public class Main {
             }
         } while (!select.equalsIgnoreCase("1") && !select.equalsIgnoreCase("0"));
     }
+
+    private void printMenuEditRoom() {
+        int choice;
+        String stringChoice;
+
+        System.out.println("                   EDIT ROOM                     ");
+        System.out.println("-------------------------------------------------");
+        System.out.println("| 1. Edit Room Number                            |");
+        System.out.println("| 2. Edit Number Of Beds                         |");
+        System.out.println("| 3. Edit Price                                  |");
+        System.out.println("| 4. Edit Balcony Status                         |");
+        System.out.println("| 5. Edit All Room Attributes                    |");
+        System.out.println("| 6. Back To Main Menu                           |");
+        System.out.println("-------------------------------------------------");
+        System.out.print("Enter your choice >>");
+        stringChoice = input.next();
+        if (!stringChoice.equals("1") && !stringChoice.equals("2") && !stringChoice.equals("3") &&
+                !stringChoice.equals("4") && !stringChoice.equals("5") && !stringChoice.equals("6")) {
+            if (stringChoice.equals(".")) {
+                startMenu();
+            }
+
+        } else {
+            choice = Integer.valueOf(stringChoice);
+
+            switch (choice) {
+                case 1:
+                    editRoom(Filter.RNR);
+                    break;
+                case 2:
+                    editRoom(Filter.BEDS);
+                    break;
+                case 3:
+                    editRoom(Filter.PRICE);
+                    break;
+                case 4:
+                    editRoom(Filter.BALCONY);
+                    break;
+                case 5:
+                    editRoom(Filter.ALL);
+                    break;
+                case 6: // Back to startMenu
+                    break;
+            }
+        }
+    }
+
+    private void editRoom(Filter filt) {
+        String stringChoice, temp;
+        int roomNumber, beds, counter, index = 99;
+        String hasBalcony = "No";
+        int price;
+
+        viewRoomInfo();
+        if (filt == Filter.ALL) {
+            do {
+                counter = 0;
+                System.out.print("Enter RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() != roomNumber) {
+                        counter++;
+                    }
+                }
+                if (counter == listOfRooms.size()) {
+                    System.out.println("\nRNR [" + roomNumber + "] does not exist in room directory");
+                }
+            } while (counter == listOfRooms.size());
+
+            for (int i = 0; i < listOfRooms.size(); i++) {
+                if (listOfRooms.get(i).getRoomNumber() == roomNumber) {
+                    index = i;
+                    break;
+                }
+            }
+            System.out.println("\nEDIT ALL INFORMATION\n-------------------------------");
+            System.out.printf("%s %5s %7s %11s  |%n", "RNR", "BEDS", "BALCONY", "PRICE(SEK)");
+            System.out.printf("%2d %5d %6s %10d     |%n",
+                    listOfRooms.get(index).getRoomNumber(), listOfRooms.get(index).getBeds(),
+                    listOfRooms.get(index).getHasBalcony(), listOfRooms.get(index).getPrice());
+            System.out.println("-------------------------------");
+            do {
+                counter = 0;
+                System.out.print("New RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() == roomNumber && i != index || roomNumber <= 0 || roomNumber >= 100) {
+                        counter++;
+                    }
+                }
+                if (counter != 0) {
+                    System.out.println("\nROOM NUMBER [" + roomNumber + "] is already in use or out-of-bounds");
+                }
+            } while (counter != 0);
+
+            do {
+                counter = 0;
+                System.out.print("New Number of beds: ");
+                beds = input.nextInt();
+                if (beds != 1 && beds != 2 && beds != 3 && beds != 4) {
+                    System.out.println("\nRoom can hold one, two, three or four beds");
+                }
+            } while (beds != 1 && beds != 2 && beds != 3 && beds != 4);
+
+            System.out.print("New has Balcony status (yes/no): ");
+            temp = input.next();
+            if (temp.equalsIgnoreCase("yes") || temp.equalsIgnoreCase("true")) {
+                hasBalcony = "yes";
+            }
+
+            do {
+                System.out.print("New Price per night: ");
+                price = input.nextInt();
+                if (price != 1000 && price != 1500 && price != 1900 && price != 2200) {
+                    System.out.println("\nThe options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 SEK");
+                }
+            } while (price == 1000 && price == 1500 && price == 1900 && price == 2200);
+            listOfRooms.get(index).setRoomNumber(roomNumber);
+            listOfRooms.get(index).setBeds(beds);
+            listOfRooms.get(index).setHasBalcony(hasBalcony);
+            listOfRooms.get(index).setPrice(price);
+            System.out.println("\nRoom successfully updated");
+        } else if (filt == Filter.RNR) {
+            do {
+                counter = 0;
+                System.out.print("Enter RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() != roomNumber) {
+                        counter++;
+                    }
+                }
+                if (counter == listOfRooms.size()) {
+                    System.out.println("\nRNR [" + roomNumber + "] does not exist in room directory");
+                }
+            } while (counter == listOfRooms.size());
+
+            for (int i = 0; i < listOfRooms.size(); i++) {
+                if (listOfRooms.get(i).getRoomNumber() == roomNumber) {
+                    index = i;
+                    break;
+                }
+            }
+            System.out.println("\nEDIT RNR\n-------------------------------");
+            System.out.printf("%s %5s %7s %11s  |%n", "RNR", "BEDS", "BALCONY", "PRICE(SEK)");
+            System.out.printf("%2d %5d %6s %10d     |%n",
+                    listOfRooms.get(index).getRoomNumber(), listOfRooms.get(index).getBeds(),
+                    listOfRooms.get(index).getHasBalcony(), listOfRooms.get(index).getPrice());
+            System.out.println("-------------------------------");
+            do {
+                counter = 0;
+                System.out.print("New RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() == roomNumber && i != index || roomNumber <= 0 || roomNumber >= 100) {
+                        counter++;
+                    }
+                }
+                if (counter != 0) {
+                    System.out.println("\nROOM NUMBER [" + roomNumber + "] is already in use or out-of-bounds");
+                }
+            } while (counter != 0);
+            listOfRooms.get(index).setRoomNumber(roomNumber);
+            System.out.println("\nRoom successfully updated");
+        } else if (filt == Filter.BEDS) {
+            do {
+                counter = 0;
+                System.out.print("Enter RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() != roomNumber) {
+                        counter++;
+                    }
+                }
+                if (counter == listOfRooms.size()) {
+                    System.out.println("\nRNR [" + roomNumber + "] does not exist in room directory");
+                }
+            } while (counter == listOfRooms.size());
+
+            for (int i = 0; i < listOfRooms.size(); i++) {
+                if (listOfRooms.get(i).getRoomNumber() == roomNumber) {
+                    index = i;
+                    break;
+                }
+            }
+            System.out.println("\nEDIT NUMBER OF BEDS\n-------------------------------");
+            System.out.printf("%s %5s %7s %11s  |%n", "RNR", "BEDS", "BALCONY", "PRICE(SEK)");
+            System.out.printf("%2d %5d %6s %10d     |%n",
+                    listOfRooms.get(index).getRoomNumber(), listOfRooms.get(index).getBeds(),
+                    listOfRooms.get(index).getHasBalcony(), listOfRooms.get(index).getPrice());
+            System.out.println("-------------------------------");
+            do {
+                System.out.print("New Number of beds: ");
+                beds = input.nextInt();
+                if (beds != 1 && beds != 2 && beds != 3 && beds != 4) {
+                    System.out.println("\nRoom can hold one, two, three or four beds");
+                }
+            } while (beds != 1 && beds != 2 && beds != 3 && beds != 4);
+            listOfRooms.get(index).setBeds(beds);
+            System.out.println("\nRoom successfully updated");
+        } else if (filt == Filter.BALCONY) {
+            do {
+                counter = 0;
+                System.out.print("Enter RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() != roomNumber) {
+                        counter++;
+                    }
+                }
+                if (counter == listOfRooms.size()) {
+                    System.out.println("\nRNR [" + roomNumber + "] does not exist in room directory");
+                }
+            } while (counter == listOfRooms.size());
+
+            for (int i = 0; i < listOfRooms.size(); i++) {
+                if (listOfRooms.get(i).getRoomNumber() == roomNumber) {
+                    index = i;
+                    break;
+                }
+            }
+            System.out.println("\nEDIT HAS BALCONY\n-------------------------------");
+            System.out.printf("%s %5s %7s %11s  |%n", "RNR", "BEDS", "BALCONY", "PRICE(SEK)");
+            System.out.printf("%2d %5d %6s %10d     |%n",
+                    listOfRooms.get(index).getRoomNumber(), listOfRooms.get(index).getBeds(),
+                    listOfRooms.get(index).getHasBalcony(), listOfRooms.get(index).getPrice());
+            System.out.println("-------------------------------");
+            System.out.print("New has Balcony status (yes/no): ");
+            temp = input.next();
+            if (temp.equalsIgnoreCase("yes") || temp.equalsIgnoreCase("true")) {
+                hasBalcony = "Yes";
+            }
+            listOfRooms.get(index).setHasBalcony(hasBalcony);
+            System.out.println("\nRoom successfully updated");
+        } else if (filt == Filter.PRICE) {
+            do {
+                counter = 0;
+                System.out.print("RNR: ");
+                roomNumber = input.nextInt();
+                for (int i = 0; i < listOfRooms.size(); i++) {
+                    if (listOfRooms.get(i).getRoomNumber() != roomNumber) {
+                        counter++;
+                    }
+                }
+                if (counter == listOfRooms.size()) {
+                    System.out.println("\nRNR [" + roomNumber + "] does not exist in room directory");
+                }
+            } while (counter == listOfRooms.size());
+
+            for (int i = 0; i < listOfRooms.size(); i++) {
+                if (listOfRooms.get(i).getRoomNumber() == roomNumber) {
+                    index = i;
+                    break;
+                }
+            }
+            System.out.println("\nEdit PRICE\n-------------------------------");
+            System.out.printf("%s %5s %7s %11s  |%n", "RNR", "BEDS", "BALCONY", "PRICE(SEK)");
+            System.out.printf("%2d %5d %6s %10d     |%n",
+                    listOfRooms.get(index).getRoomNumber(), listOfRooms.get(index).getBeds(),
+                    listOfRooms.get(index).getHasBalcony(), listOfRooms.get(index).getPrice());
+            System.out.println("-------------------------------");
+            do {
+                System.out.print("New Price: ");
+                price = input.nextInt();
+                if (price != 1000 && price != 1500 && price != 1900 && price != 2200) {
+                    System.out.println("\nThe options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 SEK");
+                }
+            } while (price == 1000 && price == 1500 && price == 1900 && price == 2200);
+            listOfRooms.get(index).setPrice(price);
+            System.out.println("\nRoom successfully updated");
+        }
+        System.out.print("Press any key >>");
+        stringChoice = input.next();
+        if (stringChoice.equals(".")) {
+            printMenuEditRoom();
+        } else if (stringChoice.equals("..")) {
+            startMenu();
+        } else if (stringChoice.equals("...")) {
+            // back to startMenu
+        } else if (stringChoice.equals(".r") && filt == Filter.RNR) {
+            editRoom(Filter.RNR);
+        } else if (stringChoice.equals(".r") && filt == Filter.BEDS) {
+            editRoom(Filter.BEDS);
+        } else if (stringChoice.equals(".r") && filt == Filter.BALCONY) {
+            editRoom(Filter.BALCONY);
+        } else if (stringChoice.equals(".r") && filt == Filter.PRICE) {
+            editRoom(Filter.PRICE);
+        } else if (stringChoice.equals(".r") && filt == Filter.ALL) {
+            editRoom(Filter.ALL);
+        } else {
+            System.out.println("Return to Main menu");
+        }
+    }
+
 
     private void removeRoom() {
         int roomNumber;
@@ -543,6 +875,7 @@ public class Main {
         }
         return null;
     }
+
     private Room findRoomWithId(int roomId) {
         for (int i = 0; i < listOfRooms.size(); i++) {
             if (listOfRooms.get(i).getRoomNumber() == roomId) {
@@ -554,7 +887,7 @@ public class Main {
 
     private void viewCustomerInfo() {
         System.out.println("-----List Of Customers-----");
-        for (Customer cus: listOfCustomer){
+        for (Customer cus : listOfCustomer) {
             System.out.println(cus);
         }
         System.out.println("---------------------------");
@@ -563,10 +896,10 @@ public class Main {
     private void viewRoomInfo() {
 
         System.out.println("-----List Of Rooms-----");
-        for (Room room: listOfRooms){
+        for (Room room : listOfRooms) {
             System.out.println(room);
         }
-        System.out.println("-----------------------");
+        System.out.println("------------------------------");
     }
 
 

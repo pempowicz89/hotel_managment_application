@@ -25,46 +25,52 @@ public class Room {
             throw new IllegalArgumentException(
                     "Star only rank 1-5.");
         }
-        if (price > 0 && price <= 4000) {
+        if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
             this.price = price;
 
         } else {
             throw new IllegalArgumentException(
-                    "The price can not be less than 0 SEK or more than 4000 sek");
+                    "The options for prices are 1000 SEK, 1500 SEK, 1900 SEK and 2200 ");
         }
     }
 
     public String getHasBalcony() {
+
         return hasBalcony;
     }
 
-    public void setHasBalcony(String hasBalcony) {
+    public void setHasBalcony(String hasBalcony)
+    {
         this.hasBalcony = hasBalcony;
     }
 
-    public int getPrice() {
+    public int getPrice()
+    {
         return price;
     }
 
     public void setPrice(int price) {
-        if (price > 0 && price < 4000) {
+        if (price == 1000 || price == 1500 || price == 1900 || price ==2200 ) {
             this.price = price;
         } else {
             throw new IllegalArgumentException(
-                    "The price can not be less than 0 SEK or more than 4000 sek");
+                    "The options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 ");
         }
     }
 
 
     public void setRoomNumber(int roomNumber) {
+
         this.roomNumber = roomNumber;
     }
 
     public int getRoomNumber() {
+
         return roomNumber;
     }
 
     public int getBeds() {
+
         return beds;
     }
 
