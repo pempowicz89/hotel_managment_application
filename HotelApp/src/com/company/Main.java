@@ -13,7 +13,7 @@ public class Main {
 
     //This gets the current date
 
-    SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM-yyy HH:mm:ss z");
+    SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM-yyyy HH:mm:ss z");
     Calendar cal = Calendar.getInstance();
     //To use this, you write: sdf.format(cal.getTime())
     //If you want to change date:
