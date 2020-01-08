@@ -228,6 +228,7 @@ public class Main {
                 System.out.println("5. SSN");
                 System.out.println("6. Address");
                 System.out.println("7. Phone Number");
+                System.out.println("8. Back to Main Menu");
 
                 select = input.nextLine();
 
@@ -238,6 +239,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setUserName(newData);
+                        break;
                     }
                     case "2": {
                         System.out.println("Current Password:" + listOfCustomer.get(i).getPassword());
@@ -245,6 +247,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setPassword(newData);
+                        break;
                     }
                     case "3": {
                         System.out.println("Current First Name:" + listOfCustomer.get(i).getFirstName());
@@ -252,6 +255,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setFirstName(newData);
+                        break;
                     }
                     case "4": {
                         System.out.println("Current Last Name:" + listOfCustomer.get(i).getLastName());
@@ -259,6 +263,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setLastName(newData);
+                        break;
                     }
                     case "5": {
                         System.out.println("Current SSN:" + listOfCustomer.get(i).getSSN());
@@ -266,6 +271,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setSSN(newData);
+                        break;
                     }
                     case "6": {
                         System.out.println("Current Address:" + listOfCustomer.get(i).getAddress());
@@ -273,6 +279,7 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setAddress(newData);
+                        break;
                     }
                     case "7": {
                         System.out.println("Current Phone Number:" + listOfCustomer.get(i).getTelephoneNumber());
@@ -280,6 +287,10 @@ public class Main {
                         newData = input.nextLine();
 
                         listOfCustomer.get(i).setTelephoneNumber(newData);
+                        break;
+                    }
+                    case "8": {
+                        startMenu();
                     }
                 }
             }
