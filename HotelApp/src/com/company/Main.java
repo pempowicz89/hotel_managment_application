@@ -3,11 +3,22 @@ package com.company;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 
 public class Main {
 
     private Scanner input = new Scanner(System.in);
+
+    //This gets the current date
+
+    SimpleDateFormat sdf = new SimpleDateFormat("E, dd-MM-yyy HH:mm:ss z");
+    Calendar cal = Calendar.getInstance();
+    //To use this, you write: sdf.format(cal.getTime())
+    //If you want to change date:
+    //To add days, you write: cal.add(Calendar.DAY_OF_MONTH, 1)  The 1 is how many days you want to add
+    //Then you need to make another string: String newDate = sdf.format(cal.getTime())
 
     //arrays for adding user, booking, customer, and rooms
     private final String passwordRegex = "((Dino)|(Jens)|(Gustav)|(Hassan))";
