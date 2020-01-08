@@ -348,6 +348,8 @@ public class Main {
         double totalPrice;
         String printCus;
         int choice;
+        int days;
+        String val;
         System.out.println("If you wish to see what rooms are available type in 10!");
         System.out.print("If you wish to proceed type in any int: ");
         choice = input.nextInt();
@@ -361,6 +363,7 @@ public class Main {
         Customer customer = findCustomerWithId(customerId);
         if (customer == null) {
             System.out.println("Does not exist");
+            startMenu();
         } else {
             System.out.println(customer);
         }
@@ -370,16 +373,34 @@ public class Main {
         Room rum = findRoomWithId(bookingId);
         if (rum == null) {
             System.out.println("Does not exist");
+            startMenu();
         } else {
             System.out.println(rum);
         }
 
-        System.out.println("Please enter when you will check in: ");
-        checkIn = input.nextLine();
+        do {
 
-        System.out.print("Please enter your check out date: ");
-        checkOut = input.nextLine();
 
+        System.out.print("Please enter the number of days that you wish to stay: ");
+        days = input.nextInt();
+
+        System.out.println("Current date: " + sdf.format(cal.getTime()));
+        System.out.println();
+        cal.add(Calendar.DAY_OF_MONTH, days);
+        String newDate = sdf.format(cal.getTime());
+        System.out.println("Date of your check out: " + newDate);
+        input.nextLine();
+        System.out.println("Is this correct? (Yes/No)");
+        val = input.nextLine();
+        if (val.equals("Yes")){
+            System.out.println("Room Price per Night: " + findRoomWithId(bookingId).getPrice());
+            System.out.println("Days staying: " + days);
+            totalPrice = (findRoomWithId(bookingId).getPrice() * days);
+            System.out.println("Total price for staying: " + totalPrice);
+
+        }
+
+         } while (!val.equals("Yes"));
 //      Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
