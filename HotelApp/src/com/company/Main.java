@@ -14,7 +14,12 @@ public class Main {
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
-    private ArrayList<Customer> listOfCustomer = new ArrayList<>();
+    private ArrayList<Customer> listOfCustomer = new ArrayList<>() {{
+        add(new Customer("Vladimir", "4321", false, "Vladidmir",
+                "Putin", "987654321", "Kremlin", "002002"));
+        add(new Customer("Donald", "1234", false, "Donald",
+                "Trump", "123456789", "White House", "001001"));
+    }};
     private ArrayList<Room> listOfRooms = new ArrayList<>() {{
         add(new Room(1, 2, 3, "yes", 1000));
         add(new Room(2, 3, 4, "no", 1500));
@@ -56,17 +61,6 @@ public class Main {
         listOfStaff.add(new User("Jens", "Lindström", true));
         listOfStaff.add(new User("Gustav", "Svensson", true));
         listOfStaff.add(new User("Dino", "Tuzlak", true));
-
-        //two guests or user added manually
-
-        Customer cus1 = new Customer("Donald", "1234", false, "Donald",
-                "Trump", "123456789", "White House", "001001");
-        Customer cus2 = new Customer("Vladimir", "4321", false, "Vladidmir",
-                "Putin", "987654321", "Kremlin", "002002");
-
-        listOfCustomer.add(cus1);
-        listOfCustomer.add(cus2);
-
 
         do {
             printLogInMenu();
@@ -898,6 +892,7 @@ public class Main {
         System.out.println("-----List Of Rooms-----");
         for (Room room : listOfRooms) {
             System.out.println(room);
+            System.out.println("--------------------");
         }
         System.out.println("------------------------------");
     }
