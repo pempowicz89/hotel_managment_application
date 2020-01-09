@@ -1,6 +1,7 @@
 package com.company;
 
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -145,7 +146,7 @@ public class Main {
             } else if (select == 3) {
                 hotelApp.editCustomer();
             } else if (select == 4) {
-                System.out.println("Under Construction");
+                hotelApp.editBooking();
             } else if (select == 5) {
                 hotelApp.addRoom();
             } else if (select == 6) {
@@ -342,7 +343,7 @@ public class Main {
 
     private void addBooking() {
         int customerId;
-        int bookingId, roomNumber;
+        int bookingId = 1, roomNumber;
         String checkIn;
         String checkOut;
         double totalPrice;
@@ -369,8 +370,8 @@ public class Main {
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
-        bookingId = input.nextInt();
-        Room rum = findRoomWithId(bookingId);
+        roomNumber = input.nextInt();
+        Room rum = findRoomWithId(roomNumber);
         if (rum == null) {
             System.out.println("Does not exist");
             startMenu();
@@ -392,18 +393,95 @@ public class Main {
         input.nextLine();
         System.out.println("Is this correct? (Yes/No)");
         val = input.nextLine();
-        if (val.equals("Yes")){
-            System.out.println("Room Price per Night: " + findRoomWithId(bookingId).getPrice());
-            System.out.println("Days staying: " + days);
-            totalPrice = (findRoomWithId(bookingId).getPrice() * days);
-            System.out.println("Total price for staying: " + totalPrice);
+            if (val.equals("Yes")){
+                System.out.println("Room Price per Night: " + findRoomWithId(roomNumber).getPrice());
+                System.out.println("Days staying: " + days);
+                totalPrice = (findRoomWithId(roomNumber).getPrice() * days);
+                System.out.println("Total price for staying: " + totalPrice);
 
-        }
+
+                Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, sdf.format(cal.getTime())
+                        , newDate);
+
+                listOfBookings.add(newBooking);
+                bookingId++;
+            }
 
          } while (!val.equals("Yes"));
 //      Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
+    }
+
+    private void editBooking() {
+        int bookingId;
+        String newData;
+        int newDataInt;
+
+        System.out.println("Which booking do you want to change? Enter booking ID");
+        bookingId = input.nextInt();
+        input.nextLine();
+
+        for (int i = 0; i < listOfBookings.size(); i++) {
+            if (bookingId == listOfBookings.get(i).getBookingId()) {
+                int chosenBooking = listOfBookings.get(i).getBookingId();
+
+                System.out.println("What do you want to change?");
+                System.out.println("1. Customer");
+                System.out.println("2. Room Number");
+                System.out.println("3. Checkout Date");
+                System.out.println("4. Back to Main Menu");
+
+                String select = input.nextLine();
+
+                switch (select) {
+                    case "1": {
+                        System.out.println("Current Customer Id: " + listOfBookings.get(i).getCustomer());
+                        System.out.println("Input new Customer Id :");
+                        newDataInt = input.nextInt();
+
+                        listOfBookings.get(i).setCustomer(newDataInt);
+                        System.out.println("New Customer Id: " + listOfBookings.get(i).getCustomer());
+                        System.out.println("(Press Enter to Continue)");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    }
+                    case "2": {
+                        System.out.println("Current Room Number: " + listOfBookings.get(i).getRoomNumber());
+                        System.out.println("Input new Room Number: ");
+                        newDataInt = input.nextInt();
+
+                        listOfBookings.get(i).setRoomNumber(newDataInt);
+                        System.out.println("New Room Data:");
+                        System.out.println(listOfRooms.get(i));
+                        System.out.println("(Press Enter to Continue)");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    }
+                    case "3": {
+                        System.out.println("Current Checkout Date: " + listOfBookings.get(i).getCheckOut());
+                        System.out.println("Input how many days until checkout: ");
+                        newDataInt = input.nextInt();
+
+
+                        cal.add(Calendar.DAY_OF_MONTH, newDataInt);
+                        String newDate = sdf.format(cal.getTime());
+                        listOfBookings.get(i).setCheckOut(newDate);
+
+                        System.out.println("New Checkout Date: " + newDate);
+                        System.out.println("(Press Enter to Continue)");
+                        input.nextLine();
+                        input.nextLine();
+                        break;
+                    }
+                    case "4": {
+                        startMenu();
+                    }
+                }
+            }
+        }
     }
 
     private void addRoom() { // method adding room

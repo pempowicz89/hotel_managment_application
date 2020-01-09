@@ -3,13 +3,13 @@ package com.company;
 public class Booking {
 
     private int bookingId;
-    private String customerId;
+    private int customerId;
     private int roomNumber;
     private double totalPrice;
     private String checkIn;
     private String checkOut;
 
-    public Booking(int bookingId, String customerId, int roomNumber, double totalPrice, String checkIn, String checkOut) {
+    public Booking(int bookingId, int customerId, int roomNumber, double totalPrice, String checkIn, String checkOut) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.roomNumber = roomNumber;
@@ -26,11 +26,11 @@ public class Booking {
         this.bookingId = bookingId;
     }
 
-    public String getCustomer() {
+    public int getCustomer() {
         return customerId;
     }
 
-    public void setCustomer(String customer) {
+    public void setCustomer(int customer) {
         this.customerId = customer;
     }
 
