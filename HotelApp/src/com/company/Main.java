@@ -996,13 +996,24 @@ public class Main {
             }
 
     */
+        System.out.println("Search for room");
+        System.out.println("-----------------------------------------------");
 
+        System.out.println("enter room number");
+        int n;
+        n = input.nextInt();
 
+        for (Room r : listOfRooms) {
 
-    }
-
-
-
+                System.out.println("Room number: " + r.getRoomNumber());
+                System.out.println("Number of beds: " + r.getRoomNumber());
+                System.out.println("Balcony : " + r.getRoomNumber());
+                System.out.println("Price per night: " + r.getRoomNumber());
+                System.out.println("Is the room booked: " + r.getRoomNumber());
+                System.out.println("-----------------------------------------------");
+            }
+        }
+        
     private Customer findCustomerWithId(int customerId) {
         for (int i = 0; i < listOfCustomer.size(); i++) {
             if (listOfCustomer.get(i).getCustomerId() == customerId) {
