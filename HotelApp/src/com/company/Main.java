@@ -387,6 +387,7 @@ public class Main {
 
             System.out.println("Current date: " + sdf.format(cal.getTime()));
             System.out.println();
+            String oldDate = sdf.format(cal.getTime());
             cal.add(Calendar.DAY_OF_MONTH, days);
             String newDate = sdf.format(cal.getTime());
             System.out.println("Date of your check out: " + newDate);
@@ -400,8 +401,7 @@ public class Main {
                 System.out.println("Total price for staying: " + totalPrice);
 
 
-                Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, sdf.format(cal.getTime())
-                        , newDate);
+                Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, oldDate, newDate);
 
                 listOfBookings.add(newBooking);
                 bookingId++;
@@ -978,6 +978,7 @@ public class Main {
         for (Booking b : listOfBookings) {
             System.out.println("Booking ID: " + b.getBookingId());
             System.out.println("Total price: " + b.getTotalPrice());
+            System.out.println("Room Number: " + b.getRoomNumber());
             System.out.println("Check in: " + b.getCheckIn());
             System.out.println("Check out: " + b.getCheckOut());
             System.out.println("----------------------");
@@ -1013,7 +1014,7 @@ public class Main {
                 System.out.println("-----------------------------------------------");
             }
         }
-        
+
     private Customer findCustomerWithId(int customerId) {
         for (int i = 0; i < listOfCustomer.size(); i++) {
             if (listOfCustomer.get(i).getCustomerId() == customerId) {
