@@ -972,9 +972,17 @@ public class Main {
     } private void searchForAllBookings () {
         System.out.println("Search for all bookings");
         System.out.println("----------------------------");
-        System.out.println("Enter a specific customer ID");
-        int p = input.nextInt();
+        //System.out.println("Enter a specific customer ID");
+        //int p = input.nextInt();
 
+        for (Booking b : listOfBookings) {
+            System.out.println("Booking ID: " + b.getBookingId());
+            System.out.println("Total price: " + b.getTotalPrice());
+            System.out.println("Check in: " + b.getCheckIn());
+            System.out.println("Check out: " + b.getCheckOut());
+            System.out.println("----------------------");
+        }
+        /*
         for (int i = 0; i < listOfBookings.size(); i++) {
             listOfBookings.get(i).getBookingId();
             int ID = listOfBookings.get(i).getBookingId();
@@ -987,16 +995,13 @@ public class Main {
                 System.out.println("----------------------");
             }
 
-        }
+    */
+
+
 
     }
 
-    {
-        {
-            {
-            }
-        }
-    }
+
 
     private Customer findCustomerWithId(int customerId) {
         for (int i = 0; i < listOfCustomer.size(); i++) {
