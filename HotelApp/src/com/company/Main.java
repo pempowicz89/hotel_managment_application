@@ -160,7 +160,7 @@ public class Main {
             } else if (select == 10) {
                 hotelApp.viewRoomInfo();
             } else if (select == 11) {
-                System.out.println("Under Construction");
+                hotelApp.searchForAllBookings();
             } else if (select == 12) {
                 hotelApp.addBooking();
             }
@@ -382,18 +382,18 @@ public class Main {
         do {
 
 
-        System.out.print("Please enter the number of days that you wish to stay: ");
-        days = input.nextInt();
+            System.out.print("Please enter the number of days that you wish to stay: ");
+            days = input.nextInt();
 
-        System.out.println("Current date: " + sdf.format(cal.getTime()));
-        System.out.println();
-        cal.add(Calendar.DAY_OF_MONTH, days);
-        String newDate = sdf.format(cal.getTime());
-        System.out.println("Date of your check out: " + newDate);
-        input.nextLine();
-        System.out.println("Is this correct? (Yes/No)");
-        val = input.nextLine();
-            if (val.equals("Yes")){
+            System.out.println("Current date: " + sdf.format(cal.getTime()));
+            System.out.println();
+            cal.add(Calendar.DAY_OF_MONTH, days);
+            String newDate = sdf.format(cal.getTime());
+            System.out.println("Date of your check out: " + newDate);
+            input.nextLine();
+            System.out.println("Is this correct? (Yes/No)");
+            val = input.nextLine();
+            if (val.equals("Yes")) {
                 System.out.println("Room Price per Night: " + findRoomWithId(roomNumber).getPrice());
                 System.out.println("Days staying: " + days);
                 totalPrice = (findRoomWithId(roomNumber).getPrice() * days);
@@ -407,7 +407,7 @@ public class Main {
                 bookingId++;
             }
 
-         } while (!val.equals("Yes"));
+        } while (!val.equals("Yes"));
 //      Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
@@ -967,6 +967,33 @@ public class Main {
             } else {
                 System.out.println("Faulty input recognized. Try again!\nPress (Enter)");
                 input.nextLine();
+            }
+        }
+    } private void searchForAllBookings () {
+        System.out.println("Search for all bookings");
+        System.out.println("----------------------------");
+        System.out.println("Enter a specific customer ID");
+        int p = input.nextInt();
+
+        for (int i = 0; i < listOfBookings.size(); i++) {
+            listOfBookings.get(i).getBookingId();
+            int ID = listOfBookings.get(i).getBookingId();
+            if (ID == p);
+            {
+                System.out.println("Booking ID: " + listOfBookings.get(i).getBookingId());
+                System.out.println("Total price: " + listOfBookings.get(i).getTotalPrice());
+                System.out.println("Check in: " + listOfBookings.get(i).getCheckIn());
+                System.out.println("Check out: " + listOfBookings.get(i).getCheckOut());
+                System.out.println("----------------------");
+            }
+
+        }
+
+    }
+
+    {
+        {
+            {
             }
         }
     }
