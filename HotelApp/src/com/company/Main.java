@@ -113,7 +113,7 @@ public class Main {
 
     private void startMenu() {
         System.out.println("          START MENU             ");
-        System.out.println("--------------------------------");
+        System.out.println("---------------------------------");
         System.out.println("| 1.  Add Customer              |");
         System.out.println("| 2.  Remove Customer           |");
         System.out.println("| 3.  Edit Customer info        |");
@@ -121,13 +121,13 @@ public class Main {
         System.out.println("| 5.  Add Room                  |");
         System.out.println("| 6.  Edit Room                 |");
         System.out.println("| 7.  Remove Room               |");
-        System.out.println("| 8.  Go To Admin Menu          |");
+        System.out.println("| 8.  Go To Log in Menu         |");
         System.out.println("| 9.  View Customer             |");
         System.out.println("| 10. View Rooms                |");
         System.out.println("| 11. Search For All Booking    |");
         System.out.println("| 12. Add booking               |");
         System.out.println("| 13. Back                      |");
-        System.out.println("--------------------------------");
+        System.out.println("---------------------------------");
     }
 
     private void handleEditMenu() {
@@ -154,7 +154,7 @@ public class Main {
             } else if (select == 7) {
                 hotelApp.removeRoom();
             } else if (select == 8) {
-                System.out.println("Under Construction");
+                hotelApp.printLogInMenu();
             } else if (select == 9) {
                 hotelApp.viewCustomerInfo();
             } else if (select == 10) {
@@ -433,7 +433,8 @@ public class Main {
                 System.out.println("1. Customer Id");
                 System.out.println("2. Room Number");
                 System.out.println("3. Checkout Date");
-                System.out.println("4. Back to Main Menu");
+                System.out.println("4. Cancel this book");
+                System.out.println("5. Back to Main Menu");
 
                 String select = input.nextLine();
 
@@ -480,6 +481,26 @@ public class Main {
                         break;
                     }
                     case "4": {
+                        System.out.println("Would you like to cancel this book? yes/no: " );
+                        newData = input.nextLine();
+                        boolean rightInput;
+                        do {
+                            newData = input.nextLine();
+                            if (newData.equals("yes")) {
+                                rightInput = true;
+
+                            } else if (newData.equals("no")){
+                                rightInput = false;
+                                editBooking();
+                            } else {
+                                System.out.println("Invalid answer");
+                                System.out.println("--------------");
+                                editBooking();
+                            }
+                        } while (rightInput = false);
+
+                    }
+                    case "5": {
                         startMenu();
                     }
                 }
