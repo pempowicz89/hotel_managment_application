@@ -41,6 +41,7 @@ public class Main {
     private enum Access {ADMIN, GUEST}
     private int menuInt;
     private int loggedInCustomer;
+    private int bookingId = 0;
     private enum Motive {
         VIEW, BOOKING, REMOVE,
         CHECKOUT, NULL,
@@ -210,7 +211,7 @@ public class Main {
                 } else if (select == 2) {
                     //hotelApp.bookingHistory();
                 } else if (select == 3) {
-                    //hotelApp.newBooking();
+                    hotelApp.makeABook();
                 } else if (select == 4) {
                     //hotelApp.editYourInfo();
                 } else if (select == 5) {
@@ -232,6 +233,63 @@ public class Main {
                 System.out.println("-----------------");
             }
         }
+    }
+    private void makeABook() {
+        System.out.println("Welcome to our booking service");
+        int numberOfNights = 0;
+        while (numberOfNights < 1) {
+            System.out.println("How many nights do you want to book?");
+            numberOfNights = input.nextInt();
+            input.nextLine();
+            if (numberOfNights < 1) {
+                System.out.println("You must book at least one night.");
+            }
+        }
+        int numberOfBeds = 0;
+        while (numberOfBeds < 1) {
+            System.out.println("How many beds do you want in your room? ");
+            numberOfBeds = input.nextInt();
+            input.nextLine();
+            if (numberOfBeds < 1) {
+                System.out.println("You must book at least one bed.");
+            }
+        }
+        String balcony = "";
+        while (!balcony.matches("yes|no")){
+            System.out.println("Do you want a balcony? yes/no");
+            balcony = input.nextLine();
+            if ((!balcony.matches("yes|no"))){
+                System.out.println("You must answer with yes or no");
+            }
+        }
+
+
+        System.out.println("These rooms have what you specified: ");
+        for (Room r : listOfRooms){
+            if (r.getBeds() >= numberOfBeds && balcony.equals(r.getHasBalcony()) && !r.getBooked(false)){
+                System.out.println(r);
+            }else{
+                System.out.println("No room available with those specifications. (Press enter to continue)");
+                input.nextLine();
+                break;
+            }
+
+            System.out.println("Which room do you want to book? Enter room Id");
+            int roomId = input.nextInt();
+            input.nextLine();
+            String customerName = listOfCustomer.get(loggedInCustomer).getFirstName() + " "
+                    + listOfCustomer.get(loggedInCustomer).getLastName();
+            String customerSSN = listOfCustomer.get(loggedInCustomer).getSSN();
+            String oldDate = sdf.format(cal.getTime());
+            cal.add(Calendar.DAY_OF_MONTH, numberOfNights);
+            String newDate = sdf.format(cal.getTime());
+            Booking newBooking = new Booking(bookingId, loggedInCustomer, customerName, Integer.parseInt(customerSSN), r.getRoomNumber()
+                    , r.getPrice(), oldDate, newDate);
+            listOfBookings.add(newBooking);
+            bookingId++;
+            System.out.println("Booking made!");
+        }
+
     }
 
 
@@ -410,7 +468,7 @@ public class Main {
 
     private void addBooking() {
         int customerId;
-        int bookingId = 1, roomNumber;
+        int roomNumber;
         String checkIn;
         String checkOut;
         String customerName = "";

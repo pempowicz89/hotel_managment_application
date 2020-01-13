@@ -113,7 +113,7 @@ public class Room {
                 "\nbeds          " + beds +
                 "\nstar          " + star +
                 "\nhasBalcony    " + hasBalcony +
-                "\nprice         " + price +
+                "\nprice per night " + price +
                 ' ';
     }
 }
