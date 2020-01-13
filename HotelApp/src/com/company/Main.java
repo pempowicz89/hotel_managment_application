@@ -84,8 +84,7 @@ public class Main {
                 password();
             }
             if (choice == 2) {
-                System.out.println("Enter your customer password");
-                printCustomerMenu();
+                customerPassword();
             }
 
         } while (choice != 3);
@@ -104,6 +103,17 @@ public class Main {
             }
         }
         handleEditMenu();
+    }
+
+    private void customerPassword() {
+        String choice = "";
+        System.out.println("Please enter your Customer password: ");
+        choice = input.nextLine();
+        for (Customer c : listOfCustomer){
+            if (choice.equals(c.getPassword())) {
+                printCustomerMenu();
+            }
+        }
     }
 
     private void printLogInMenu() {
