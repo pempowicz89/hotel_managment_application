@@ -997,7 +997,7 @@ public class Main {
             }
 
     */
-        System.out.println("Search for room");
+        /*System.out.println("Search for room");
         System.out.println("-----------------------------------------------");
 
         System.out.println("enter room number");
@@ -1012,7 +1012,7 @@ public class Main {
                 System.out.println("Price per night: " + r.getRoomNumber());
                 System.out.println("Is the room booked: " + r.getRoomNumber());
                 System.out.println("-----------------------------------------------");
-            }
+            }*/
         }
 
     private Customer findCustomerWithId(int customerId) {
