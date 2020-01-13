@@ -40,7 +40,7 @@ public class Main {
 
     private enum Access {ADMIN, GUEST}
     private int menuInt;
-
+    private int loggedInCustomer;
     private enum Motive {
         VIEW, BOOKING, REMOVE,
         CHECKOUT, NULL,
@@ -113,6 +113,7 @@ public class Main {
         for (Customer c : listOfCustomer){
             if (choice.equals(c.getPassword())) {
                 menuInt = 1;
+                loggedInCustomer = c.getCustomerId();
                 handleEditMenu();
             }
         }
