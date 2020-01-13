@@ -1,7 +1,6 @@
 package com.company;
 
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -40,6 +39,7 @@ public class Main {
     private Date today = new Date(2019, 11, 25, 12, 14);
 
     private enum Access {ADMIN, GUEST}
+    private int menuInt;
 
     private enum Motive {
         VIEW, BOOKING, REMOVE,
@@ -102,6 +102,7 @@ public class Main {
                 printLogInMenu();
             }
         }
+        menuInt = 0;
         handleEditMenu();
     }
 
@@ -111,7 +112,8 @@ public class Main {
         choice = input.nextLine();
         for (Customer c : listOfCustomer){
             if (choice.equals(c.getPassword())) {
-                printCustomerMenu();
+                menuInt = 1;
+                handleEditMenu();
             }
         }
     }
@@ -135,7 +137,8 @@ public class Main {
         System.out.println("| 4: Edit your info              |");
         System.out.println("| 5: Check out                   |");
         System.out.println("| 6: Cancel booking              |");
-        System.out.println("| 7: Exit to log in menu         |");
+        System.out.println("| 13: Exit to log in menu         |");
+        menuInt = 1;
 
 
 }
@@ -157,6 +160,7 @@ public class Main {
         System.out.println("| 12. Add booking               |");
         System.out.println("| 13. Back                      |");
         System.out.println("---------------------------------");
+        menuInt = 0;
     }
 
     private void handleEditMenu() {
@@ -164,38 +168,70 @@ public class Main {
 
         int select;
         do {
-            startMenu();
+            if (menuInt == 0){
+                startMenu();
+            }else if (menuInt == 1){
+                printCustomerMenu();
+            }
             System.out.print(">>");
             select = input.nextInt();
             input.nextLine();
-            if (select == 1) {
-                hotelApp.addCustomer();
-            } else if (select == 2) {
-                hotelApp.removeCustomer();
-            } else if (select == 3) {
-                hotelApp.editCustomer();
-            } else if (select == 4) {
-                hotelApp.editBooking();
-            } else if (select == 5) {
-                hotelApp.addRoom();
-            } else if (select == 6) {
-                hotelApp.printMenuEditRoom();
-            } else if (select == 7) {
-                hotelApp.removeRoom();
-            } else if (select == 8) {
-                hotelApp.printLogInMenu();
-            } else if (select == 9) {
-                hotelApp.viewCustomerInfo();
-            } else if (select == 10) {
-                hotelApp.viewRoomInfo();
-            } else if (select == 11) {
-                hotelApp.searchForAllBookings();
-            } else if (select == 12) {
-                hotelApp.addBooking();
+
+            if (menuInt == 0) {
+                if (select == 1) {
+                    hotelApp.addCustomer();
+                } else if (select == 2) {
+                    hotelApp.removeCustomer();
+                } else if (select == 3) {
+                    hotelApp.editCustomer();
+                } else if (select == 4) {
+                    hotelApp.editBooking();
+                } else if (select == 5) {
+                    hotelApp.addRoom();
+                } else if (select == 6) {
+                    hotelApp.printMenuEditRoom();
+                } else if (select == 7) {
+                    hotelApp.removeRoom();
+                } else if (select == 8) {
+                    hotelApp.printLogInMenu();
+                } else if (select == 9) {
+                    hotelApp.viewCustomerInfo();
+                } else if (select == 10) {
+                    hotelApp.viewRoomInfo();
+                } else if (select == 11) {
+                    hotelApp.searchForAllBookings();
+                } else if (select == 12) {
+                    hotelApp.addBooking();
+                }
+            } else if (menuInt == 1) {
+                if (select == 1) {
+                    hotelApp.availableRooms();
+                } else if (select == 2) {
+                    //hotelApp.bookingHistory();
+                } else if (select == 3) {
+                    //hotelApp.newBooking();
+                } else if (select == 4) {
+                    //hotelApp.editYourInfo();
+                } else if (select == 5) {
+                    //hotelApp.checkOut();
+                } else if (select == 6) {
+                    //hotelApp.cancelBooking();
+                }
             }
+
         } while (select != 13);
     }
 
+
+    private void availableRooms() {
+        System.out.println("Available rooms: ");
+        for (Room r : listOfRooms){
+            if (!r.getBooked(false)){
+                System.out.println(r);
+                System.out.println("-----------------");
+            }
+        }
+    }
 
     private void addCustomer() {
         String userName, password, firstName, lastName, ssn, phoneNumber, address;
