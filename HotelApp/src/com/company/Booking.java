@@ -5,15 +5,17 @@ public class Booking {
     private int bookingId;
     private int customerId;
     private String customerName;
+    private int customerSSN;
     private int roomNumber;
     private double totalPrice;
     private String checkIn;
     private String checkOut;
 
-    public Booking(int bookingId, int customerId, String customerName, int roomNumber, double totalPrice, String checkIn, String checkOut) {
+    public Booking(int bookingId, int customerId, String customerName, int customerSSN, int roomNumber, double totalPrice, String checkIn, String checkOut) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.customerName = customerName;
+        this.customerSSN = customerSSN;
         this.roomNumber = roomNumber;
         this.totalPrice = totalPrice;
         this.checkIn = checkIn;
@@ -42,6 +44,14 @@ public class Booking {
 
     public String getCustomerName() {
         return customerName;
+    }
+
+    public void setCustomerSSN(int customerSSN) {
+        this.customerSSN = customerSSN;
+    }
+
+    public int getCustomerSSN() {
+        return customerSSN;
     }
 
     public int getRoomNumber() {
