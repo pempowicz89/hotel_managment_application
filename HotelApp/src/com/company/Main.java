@@ -83,8 +83,12 @@ public class Main {
             if (choice == 1) {
                 password();
             }
+            if (choice == 2) {
+                System.out.println("Enter your customer password");
+                printCustomerMenu();
+            }
 
-        } while (choice != 2);
+        } while (choice != 3);
     }
 
     private void password() {
@@ -105,11 +109,27 @@ public class Main {
     private void printLogInMenu() {
         System.out.println("Login Menu");
         System.out.println("--------------------");
-        System.out.println("| 1.login          |");
-        System.out.println("| 2.Exit           |");
+        System.out.println("| 1.Staff login          |");
+        System.out.println("| 2.Customer login       |");
+        System.out.println("| 3.Exit                 |");
         System.out.println("--------------------");
 
     }
+    public void printCustomerMenu() {
+
+        System.out.println("        START MENU                ");
+        System.out.println("----------------------------------");
+        System.out.println("| 1: View available rooms        |");
+        System.out.println("| 2: View booking history        |");
+        System.out.println("| 3: Make a new booking          |");
+        System.out.println("| 4: Edit your info              |");
+        System.out.println("| 5: Check in                    |");
+        System.out.println("| 6: Check out                   |");
+        System.out.println("| 7: Cancel booking              |");
+        System.out.println("| 8: Exit to log in menu         |");
+
+
+}
 
     private void startMenu() {
         System.out.println("          START MENU             ");
@@ -498,7 +518,6 @@ public class Main {
                                 editBooking();
                             }
                         } while (rightInput = false);
-
                     }
                     case "5": {
                         startMenu();
