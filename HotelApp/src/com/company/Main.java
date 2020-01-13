@@ -40,6 +40,7 @@ public class Main {
     private Date today = new Date(2019, 11, 25, 12, 14);
 
     private enum Access {ADMIN, GUEST}
+    private int menuInt;
 
     private enum Motive {
         VIEW, BOOKING, REMOVE,
@@ -133,10 +134,10 @@ public class Main {
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
         System.out.println("| 4: Edit your info              |");
-        System.out.println("| 5: Check in                    |");
-        System.out.println("| 6: Check out                   |");
-        System.out.println("| 7: Cancel booking              |");
-        System.out.println("| 8: Exit to log in menu         |");
+        System.out.println("| 5: Check out                   |");
+        System.out.println("| 6: Cancel booking              |");
+        System.out.println("| 13: Exit to log in menu         |");
+        menuInt = 1;
 
 
 }
@@ -158,6 +159,7 @@ public class Main {
         System.out.println("| 12. Add booking               |");
         System.out.println("| 13. Back                      |");
         System.out.println("---------------------------------");
+        menuInt = 0;
     }
 
     private void handleEditMenu() {
@@ -169,33 +171,52 @@ public class Main {
             System.out.print(">>");
             select = input.nextInt();
             input.nextLine();
-            if (select == 1) {
-                hotelApp.addCustomer();
-            } else if (select == 2) {
-                hotelApp.removeCustomer();
-            } else if (select == 3) {
-                hotelApp.editCustomer();
-            } else if (select == 4) {
-                hotelApp.editBooking();
-            } else if (select == 5) {
-                hotelApp.addRoom();
-            } else if (select == 6) {
-                hotelApp.printMenuEditRoom();
-            } else if (select == 7) {
-                hotelApp.removeRoom();
-            } else if (select == 8) {
-                hotelApp.printLogInMenu();
-            } else if (select == 9) {
-                hotelApp.viewCustomerInfo();
-            } else if (select == 10) {
-                hotelApp.viewRoomInfo();
-            } else if (select == 11) {
-                hotelApp.searchForAllBookings();
-            } else if (select == 12) {
-                hotelApp.addBooking();
+
+            if (menuInt == 0) {
+                if (select == 1) {
+                    hotelApp.addCustomer();
+                } else if (select == 2) {
+                    hotelApp.removeCustomer();
+                } else if (select == 3) {
+                    hotelApp.editCustomer();
+                } else if (select == 4) {
+                    hotelApp.editBooking();
+                } else if (select == 5) {
+                    hotelApp.addRoom();
+                } else if (select == 6) {
+                    hotelApp.printMenuEditRoom();
+                } else if (select == 7) {
+                    hotelApp.removeRoom();
+                } else if (select == 8) {
+                    hotelApp.printLogInMenu();
+                } else if (select == 9) {
+                    hotelApp.viewCustomerInfo();
+                } else if (select == 10) {
+                    hotelApp.viewRoomInfo();
+                } else if (select == 11) {
+                    hotelApp.searchForAllBookings();
+                } else if (select == 12) {
+                    hotelApp.addBooking();
+                }
+            } else if (menuInt == 1) {
+                if (select == 1) {
+                    hotelApp.availebleRooms();
+                } else if (select == 2) {
+                    hotelApp.bookingHistory();
+                } else if (select == 3) {
+                    hotelApp.newBooking();
+                } else if (select == 4) {
+                    hotelApp.editYourInfo();
+                } else if (select == 5) {
+                    hotelApp.checkOut();
+                } else if (select == 6) {
+                    hotelApp.cancelBooking();
+                }
             }
+
         } while (select != 13);
     }
+
 
 
     private void addCustomer() {
