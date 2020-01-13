@@ -346,6 +346,7 @@ public class Main {
         int bookingId = 1, roomNumber;
         String checkIn;
         String checkOut;
+        String customerName = new String();
         double totalPrice;
         String printCus;
         int choice;
@@ -365,8 +366,10 @@ public class Main {
         if (customer == null) {
             System.out.println("Does not exist");
             startMenu();
-        } else {
+        }
+        else {
             System.out.println(customer);
+            customerName = customer.getFirstName() + " " + customer.getLastName();
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
@@ -401,7 +404,7 @@ public class Main {
                 System.out.println("Total price for staying: " + totalPrice);
 
 
-                Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, oldDate, newDate);
+                Booking newBooking = new Booking(bookingId, customerId, customerName, roomNumber, totalPrice, oldDate, newDate);
 
                 listOfBookings.add(newBooking);
                 bookingId++;
@@ -427,7 +430,7 @@ public class Main {
                 int chosenBooking = listOfBookings.get(i).getBookingId();
 
                 System.out.println("What do you want to change?");
-                System.out.println("1. Customer");
+                System.out.println("1. Customer Id");
                 System.out.println("2. Room Number");
                 System.out.println("3. Checkout Date");
                 System.out.println("4. Back to Main Menu");
@@ -969,7 +972,8 @@ public class Main {
                 input.nextLine();
             }
         }
-    } private void searchForAllBookings () {
+    }
+    private void searchForAllBookings () {
         System.out.println("Search for all bookings");
         System.out.println("----------------------------");
         //System.out.println("Enter a specific customer ID");
@@ -979,6 +983,8 @@ public class Main {
             System.out.println("Booking ID: " + b.getBookingId());
             System.out.println("Total price: " + b.getTotalPrice());
             System.out.println("Room Number: " + b.getRoomNumber());
+            System.out.println("Customer Id: " + b.getCustomer());
+            System.out.println("Customer Name: " + b.getCustomerName());
             System.out.println("Check in: " + b.getCheckIn());
             System.out.println("Check out: " + b.getCheckOut());
             System.out.println("----------------------");

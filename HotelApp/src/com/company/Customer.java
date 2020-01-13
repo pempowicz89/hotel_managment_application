@@ -2,8 +2,8 @@ package com.company;
 
 public class Customer extends User {
 
-    private static int IdCounter = 0;
-    private final int customerId = ++IdCounter;
+    private static int IdCounter = -1;
+    private final int customerId = IdCounter++;
     private String firstName;
     private String lastName;
     private String SSN;
