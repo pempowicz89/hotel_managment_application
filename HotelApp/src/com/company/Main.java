@@ -233,6 +233,7 @@ public class Main {
         }
     }
 
+
     private void addCustomer() {
         String userName, password, firstName, lastName, ssn, phoneNumber, address;
 
