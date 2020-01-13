@@ -8,11 +8,13 @@ public class Room {
     private int star;
     private String hasBalcony;
     private int price;
+    private boolean isBooked;
 
 
-    public Room(int roomNumber, int beds, int star, String hasBalcony, int price) {
+    public Room(int roomNumber, int beds, int star, String hasBalcony, int price, boolean isBooked) {
         this.roomNumber = roomNumber;
         this.hasBalcony = hasBalcony;
+        this.isBooked = false;
         if (beds == 1 || beds == 2 || beds == 3 || beds == 4) {
             this.beds = beds;
         } else {
@@ -72,6 +74,14 @@ public class Room {
     public int getBeds() {
 
         return beds;
+    }
+
+    public boolean getBooked(boolean isBooked){
+        return isBooked;
+    }
+
+    public void setBooked(boolean booked) {
+        isBooked = booked;
     }
 
     public void setBeds(int beds) {

@@ -33,9 +33,9 @@ public class Main {
                 "Trump", "123456789", "White House", "001001"));
     }};
     private ArrayList<Room> listOfRooms = new ArrayList<>() {{
-        add(new Room(1, 2, 3, "yes", 1000));
-        add(new Room(2, 3, 4, "no", 1500));
-        add(new Room(3, 3, 5, "yes", 1900));
+        add(new Room(1, 2, 3, "yes", 1000, false));
+        add(new Room(2, 3, 4, "no", 1500, false));
+        add(new Room(3, 3, 5, "yes", 1900, false));
     }};
     private Date today = new Date(2019, 11, 25, 12, 14);
 
@@ -346,7 +346,8 @@ public class Main {
         int bookingId = 1, roomNumber;
         String checkIn;
         String checkOut;
-        String customerName = new String();
+        String customerName = "";
+        int customerSSN = 0;
         double totalPrice;
         String printCus;
         int choice;
@@ -370,13 +371,19 @@ public class Main {
         else {
             System.out.println(customer);
             customerName = customer.getFirstName() + " " + customer.getLastName();
+            customerSSN = Integer.parseInt(customer.getSSN());
         }
 
         System.out.print("Please enter the room id that you wish to stay in: ");
         roomNumber = input.nextInt();
         Room rum = findRoomWithId(roomNumber);
         if (rum == null) {
-            System.out.println("Does not exist");
+            System.out.println("Does not exist (Press Enter to Continue)");
+            input.nextLine();
+            startMenu();
+        } else if (rum.getBooked(true)){
+            System.out.println("This room is already booked. (Press Enter to Continue)");
+            input.nextLine();
             startMenu();
         } else {
             System.out.println(rum);
@@ -403,8 +410,9 @@ public class Main {
                 totalPrice = (findRoomWithId(roomNumber).getPrice() * days);
                 System.out.println("Total price for staying: " + totalPrice);
 
+                findRoomWithId(roomNumber).setBooked(true);
 
-                Booking newBooking = new Booking(bookingId, customerId, customerName, roomNumber, totalPrice, oldDate, newDate);
+                Booking newBooking = new Booking(bookingId, customerId, customerName, customerSSN, roomNumber, totalPrice, oldDate, newDate);
 
                 listOfBookings.add(newBooking);
                 bookingId++;
@@ -428,7 +436,15 @@ public class Main {
         for (int i = 0; i < listOfBookings.size(); i++) {
             if (bookingId == listOfBookings.get(i).getBookingId()) {
                 int chosenBooking = listOfBookings.get(i).getBookingId();
-
+                System.out.println("Current Booking Id :" + listOfBookings.get(i).getBookingId());
+                System.out.println("Current Customer Id :" + listOfBookings.get(i).getCustomer());
+                System.out.println("Current Customer Name :" + listOfBookings.get(i).getCustomerName());
+                System.out.println("Current Customer SSN :" + listOfBookings.get(i).getCustomerSSN());
+                System.out.println("Current Room Number :" + listOfBookings.get(i).getRoomNumber());
+                System.out.println("Current Total Price :" + listOfBookings.get(i).getTotalPrice());
+                System.out.println("Current Booking Time : From " + listOfBookings.get(i).getCheckIn() +
+                        " to " + listOfBookings.get(i).getCheckOut());
+                System.out.println("---------------------------");
                 System.out.println("What do you want to change?");
                 System.out.println("1. Customer Id");
                 System.out.println("2. Room Number");
@@ -482,12 +498,12 @@ public class Main {
                     }
                     case "4": {
                         System.out.println("Would you like to cancel this book? yes/no: " );
-                        newData = input.nextLine();
                         boolean rightInput;
                         do {
                             newData = input.nextLine();
                             if (newData.equals("yes")) {
                                 rightInput = true;
+                                listOfBookings.remove(i);
 
                             } else if (newData.equals("no")){
                                 rightInput = false;
@@ -498,6 +514,7 @@ public class Main {
                                 editBooking();
                             }
                         } while (rightInput = false);
+                        break;
 
                     }
                     case "5": {
@@ -608,7 +625,7 @@ public class Main {
                         if (price == 1000 || price == 1500 || price == 1900 || price == 2200) {
                             rightInput = true;
                             try {
-                                Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price);
+                                Room newRoom = new Room(roomNumber, beds, star, hasBalcony, price, false);
                                 listOfRooms.add(newRoom);
                                 System.out.println("New room has been created!");
                             } catch (IllegalArgumentException e) {
@@ -1005,6 +1022,7 @@ public class Main {
             System.out.println("Total price: " + b.getTotalPrice());
             System.out.println("Room Number: " + b.getRoomNumber());
             System.out.println("Customer Id: " + b.getCustomer());
+            System.out.println("Customer SSN: " + b.getCustomerSSN());
             System.out.println("Customer Name: " + b.getCustomerName());
             System.out.println("Check in: " + b.getCheckIn());
             System.out.println("Check out: " + b.getCheckOut());
