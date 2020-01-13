@@ -133,10 +133,9 @@ public class Main {
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
         System.out.println("| 4: Edit your info              |");
-        System.out.println("| 5: Check in                    |");
-        System.out.println("| 6: Check out                   |");
-        System.out.println("| 7: Cancel booking              |");
-        System.out.println("| 8: Exit to log in menu         |");
+        System.out.println("| 5: Check out                   |");
+        System.out.println("| 6: Cancel booking              |");
+        System.out.println("| 7: Exit to log in menu         |");
 
 
 }
