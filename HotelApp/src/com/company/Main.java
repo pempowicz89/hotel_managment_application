@@ -115,7 +115,9 @@ public class Main {
         for (Customer c : listOfCustomer){
             if (choice.equals(c.getPassword())) {
                 menuInt = 1;
+                System.out.println(c.getCustomerId());
                 loggedInCustomer = c.getCustomerId();
+                System.out.println(loggedInCustomer);
                 handleEditMenu();
             }
         }
@@ -137,10 +139,16 @@ public class Main {
         System.out.println("| 1: View available rooms        |");
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
+<<<<<<< HEAD
         System.out.println("| 4: Edit your info              |");
         System.out.println("| 5: Check out                   |");
         System.out.println("| 6: Cancel booking              |");
         System.out.println("| 13: Exit to log in menu        |");
+=======
+        System.out.println("| 4: Check out                   |");
+        System.out.println("| 5: Cancel booking              |");
+        System.out.println("| 13: Exit to log in menu         |");
+>>>>>>> 7a45ce4f393914dfd7508121b3d243357f417bca
         menuInt = 1;
 
 
@@ -214,10 +222,8 @@ public class Main {
                 } else if (select == 3) {
                     hotelApp.makeABook();
                 } else if (select == 4) {
-                    //hotelApp.editYourInfo();
-                } else if (select == 5) {
                     //hotelApp.checkOut();
-                } else if (select == 6) {
+                } else if (select == 5) {
                     //hotelApp.cancelBooking();
                 }
             }
@@ -243,36 +249,7 @@ public class Main {
         }
     }
 
-    private void editYourInfo(){
-        String select;
-        String newData;
-        System.out.print("What do you wish to change?: ");
-        for (int i = 0; i < listOfCustomer.size(); i++) {
-            if (listOfCustomer.get(i).getCustomerId() == loggedInCustomer){
 
-                System.out.println("Which option would you like to change?");
-                System.out.println("1. Change username");
-                System.out.println("2. Change password");
-                System.out.println("3. Exit");
-
-                 select = input.nextLine();
-
-                 switch (select){
-                     case "1": {
-                         System.out.println("Current username: " + listOfCustomer.get(i).getUserName());
-                         System.out.print("Please input your new username: ");
-                         newData = input.nextLine();
-
-                         
-
-                     } case "2": {
-                 }
-            }
-
-        }
-        loggedInCustomer
-
-    }
 
     private void availableRooms() {
         System.out.println("Available rooms: ");
@@ -286,7 +263,7 @@ public class Main {
     private void makeABook() {
         System.out.println("Welcome to our booking service");
         System.out.println("------------------------------");
-        
+
         int numberOfNights = 0;
         while (numberOfNights < 1) {
             System.out.println("How many nights do you want to book?");
