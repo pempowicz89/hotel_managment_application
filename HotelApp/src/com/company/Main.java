@@ -140,7 +140,7 @@ public class Main {
         System.out.println("| 4: Edit your info              |");
         System.out.println("| 5: Check out                   |");
         System.out.println("| 6: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu         |");
+        System.out.println("| 13: Exit to log in menu        |");
         menuInt = 1;
 
 
