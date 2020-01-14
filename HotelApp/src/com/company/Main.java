@@ -1,6 +1,7 @@
 package com.company;
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -209,7 +210,7 @@ public class Main {
                 if (select == 1) {
                     hotelApp.availableRooms();
                 } else if (select == 2) {
-                    //hotelApp.bookingHistory();
+                    hotelApp.bookingHistory();
                 } else if (select == 3) {
                     hotelApp.makeABook();
                 } else if (select == 4) {
@@ -225,6 +226,23 @@ public class Main {
     }
 
 
+    private void bookingHistory() {
+
+        System.out.println("This is your booking history: ");
+        System.out.println("------------------------------");
+        for (Booking b : listOfBookings) {
+            if (b.getCustomer() == loggedInCustomer){
+                System.out.println("Customer Name :" + b.getCustomerName());
+                System.out.println("Customer SSN :" + b.getCustomerSSN());
+                System.out.println("Room Number :" + b.getRoomNumber());
+                System.out.println("Total Price :" + b.getTotalPrice());
+                System.out.println("Booking Time : From " + b.getCheckIn() +
+                        " to " + b.getCheckOut());
+                System.out.println("------------------------------");
+            }
+        }
+    }
+
     private void availableRooms() {
         System.out.println("Available rooms: ");
         for (Room r : listOfRooms){
@@ -236,6 +254,8 @@ public class Main {
     }
     private void makeABook() {
         System.out.println("Welcome to our booking service");
+        System.out.println("------------------------------");
+        
         int numberOfNights = 0;
         while (numberOfNights < 1) {
             System.out.println("How many nights do you want to book?");
@@ -286,8 +306,11 @@ public class Main {
             Booking newBooking = new Booking(bookingId, loggedInCustomer, customerName, Integer.parseInt(customerSSN), r.getRoomNumber()
                     , r.getPrice(), oldDate, newDate);
             listOfBookings.add(newBooking);
+            listOfRooms.get(bookingId).getBooked(true);
             bookingId++;
-            System.out.println("Booking made!");
+            System.out.println("Booking made! (Press Enter to Continue)");
+            input.nextLine();
+            break;
         }
 
     }
