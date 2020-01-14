@@ -243,6 +243,37 @@ public class Main {
         }
     }
 
+    private void editYourInfo(){
+        String select;
+        String newData;
+        System.out.print("What do you wish to change?: ");
+        for (int i = 0; i < listOfCustomer.size(); i++) {
+            if (listOfCustomer.get(i).getCustomerId() == loggedInCustomer){
+
+                System.out.println("Which option would you like to change?");
+                System.out.println("1. Change username");
+                System.out.println("2. Change password");
+                System.out.println("3. Exit");
+
+                 select = input.nextLine();
+
+                 switch (select){
+                     case "1": {
+                         System.out.println("Current username: " + listOfCustomer.get(i).getUserName());
+                         System.out.print("Please input your new username: ");
+                         newData = input.nextLine();
+
+                         
+
+                     } case "2": {
+                 }
+            }
+
+        }
+        loggedInCustomer
+
+    }
+
     private void availableRooms() {
         System.out.println("Available rooms: ");
         for (Room r : listOfRooms){
