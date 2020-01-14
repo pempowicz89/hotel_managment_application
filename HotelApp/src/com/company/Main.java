@@ -115,7 +115,9 @@ public class Main {
         for (Customer c : listOfCustomer){
             if (choice.equals(c.getPassword())) {
                 menuInt = 1;
+                System.out.println(c.getCustomerId());
                 loggedInCustomer = c.getCustomerId();
+                System.out.println(loggedInCustomer);
                 handleEditMenu();
             }
         }
@@ -214,7 +216,7 @@ public class Main {
                 } else if (select == 3) {
                     hotelApp.makeABook();
                 } else if (select == 4) {
-                    //hotelApp.editYourInfo();
+                    hotelApp.editYourInfo();
                 } else if (select == 5) {
                     //hotelApp.checkOut();
                 } else if (select == 6) {
@@ -241,6 +243,49 @@ public class Main {
                 System.out.println("------------------------------");
             }
         }
+    }
+
+    private void editYourInfo(){
+        String select;
+        String newData;
+        System.out.print("What do you wish to change?: ");
+        for (Customer customer : listOfCustomer) {
+            System.out.println(customer.getCustomerId() + "   " + loggedInCustomer);
+            if (customer.getCustomerId() == loggedInCustomer) {
+                System.out.println("TEST2");
+                System.out.println("Which option would you like to change?");
+                System.out.println("1. Change username");
+                System.out.println("2. Change password");
+                System.out.println("3. Exit");
+
+                select = input.nextLine();
+
+                switch (select) {
+                    case "1": {
+                        System.out.println("Current username: " + customer.getUserName());
+                        System.out.print("Please input your new username: ");
+                        newData = input.nextLine();
+                        customer.setUserName(newData);
+                        break;
+
+                    }
+                    case "2": {
+                        System.out.println("Current password: " + customer.getUserName());
+                        System.out.print("Please enter your new password: ");
+                        newData = input.nextLine();
+                        customer.setPassword(newData);
+                        break;
+
+                    }
+                    case "3": {
+                        printCustomerMenu();
+                    }
+                }
+            }
+
+        }
+
+
     }
 
     private void availableRooms() {

@@ -2,7 +2,7 @@ package com.company;
 
 public class Customer extends User {
 
-    private static int IdCounter = -1;
+    private static int IdCounter;
     private final int customerId = IdCounter++;
     private String firstName;
     private String lastName;
