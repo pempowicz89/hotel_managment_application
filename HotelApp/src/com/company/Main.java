@@ -255,7 +255,7 @@ public class Main {
     private void makeABook() {
         System.out.println("Welcome to our booking service");
         System.out.println("------------------------------");
-        
+
         int numberOfNights = 0;
         while (numberOfNights < 1) {
             System.out.println("How many nights do you want to book?");
