@@ -139,16 +139,9 @@ public class Main {
         System.out.println("| 1: View available rooms        |");
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
-<<<<<<< HEAD
-        System.out.println("| 4: Edit your info              |");
-        System.out.println("| 5: Check out                   |");
-        System.out.println("| 6: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu        |");
-=======
         System.out.println("| 4: Check out                   |");
         System.out.println("| 5: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu         |");
->>>>>>> 7a45ce4f393914dfd7508121b3d243357f417bca
+        System.out.println("| 13: Exit to log in menu        |");
         menuInt = 1;
 
 
