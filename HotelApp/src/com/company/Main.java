@@ -3,6 +3,7 @@ package com.company;
 
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -40,6 +41,8 @@ public class Main {
         add(new Room(3, 3, 5, "yes", 1900, false));
     }};
     private Date today = new Date(2019, 11, 25, 12, 14);
+
+    Iterator<Booking> it = listOfBookings.iterator();
 
     private enum Access {ADMIN, GUEST}
     private int menuInt;
@@ -117,9 +120,7 @@ public class Main {
         for (Customer c : listOfCustomer){
             if (choice.equals(c.getPassword())) {
                 menuInt = 1;
-                System.out.println(c.getCustomerId());
                 loggedInCustomer = c.getCustomerId();
-                System.out.println(loggedInCustomer);
                 handleEditMenu();
             }
         }
@@ -141,9 +142,8 @@ public class Main {
         System.out.println("| 1: View available rooms        |");
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
-        System.out.println("| 4: Check out                   |");
-        System.out.println("| 5: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu        |");
+        System.out.println("| 4: Cancel booking              |");
+        System.out.println("| 13: Exit to log in menu         |");
         menuInt = 1;
 
 
@@ -159,7 +159,7 @@ public class Main {
         System.out.println("| 5.  Add Room                  |");
         System.out.println("| 6.  Edit Room                 |");
         System.out.println("| 7.  Remove Room               |");
-        System.out.println("| 8.  Go To Log in Menu         |");
+        System.out.println("| 8.  Remove Booking            |");
         System.out.println("| 9.  View Customer             |");
         System.out.println("| 10. View Rooms                |");
         System.out.println("| 11. Search For All Booking    |");
@@ -199,7 +199,7 @@ public class Main {
                 } else if (select == 7) {
                     hotelApp.removeRoom();
                 } else if (select == 8) {
-                    hotelApp.printLogInMenu();
+                    hotelApp.removeBooking();
                 } else if (select == 9) {
                     hotelApp.viewCustomerInfo();
                 } else if (select == 10) {
@@ -217,13 +217,46 @@ public class Main {
                 } else if (select == 3) {
                     hotelApp.makeABook();
                 } else if (select == 4) {
-                    //hotelApp.checkOut();
-                } else if (select == 5) {
-                    //hotelApp.cancelBooking();
+                    hotelApp.cancelBooking();
                 }
             }
 
         } while (select != 13);
+    }
+
+    private void cancelBooking() {
+        for (Booking b: listOfBookings) {
+            if (b.getCustomer() == loggedInCustomer){
+                Booking name = it.next();
+                System.out.println("Customer Name :" + b.getCustomerName());
+                System.out.println("Customer SSN :" + b.getCustomerSSN());
+                System.out.println("Room Number :" + b.getRoomNumber());
+                System.out.println("Total Price :" + b.getTotalPrice());
+                System.out.println("Booking Time : From " + b.getCheckIn() +
+                        " to " + b.getCheckOut());
+                System.out.println("Cancel this booking?");
+
+                String select = input.nextLine();
+
+                switch (select){
+                    case "yes":{
+                        for (int i = 0; i < listOfRooms.size(); i++) {
+                            if (listOfRooms.get(i).getRoomNumber() == b.getRoomNumber()) {
+                                listOfRooms.get(i).setBooked(false);
+                            }
+                        }
+                        System.out.println("Booking Removed. (Press Enter to Continue)");
+                        input.nextLine();
+                        it.remove();
+                        break;
+                    } case "no": {
+                        System.out.println("Booking wasn't removed. (Press Enter to Continue)");
+                        input.nextLine();
+                        printCustomerMenu();
+                    }
+                }
+            }
+        }
     }
 
 
@@ -534,10 +567,10 @@ public class Main {
             System.out.println("Does not exist (Press Enter to Continue)");
             input.nextLine();
             startMenu();
-        } else if (rum.getBooked(true)){
+        } else if (rum.getBooked(false)){
             System.out.println("This room is already booked. (Press Enter to Continue)");
             input.nextLine();
-            startMenu();
+            handleEditMenu();
         } else {
             System.out.println(rum);
         }
@@ -575,6 +608,45 @@ public class Main {
 //      Booking newBooking = new Booking(bookingId, customerId, roomNumber, totalPrice, checkIn, checkOut);
 
 
+    }
+
+    private void removeBooking(){
+        boolean foundID = false;
+        System.out.println("Which Booking do you want to remove? Enter Booking ID");
+        int bookingint = input.nextInt();
+        input.nextLine();
+
+        for (int i = 0; i < listOfBookings.size(); i++) {
+            if (bookingint == listOfBookings.get(i).getBookingId()){
+                System.out.println("Booking ID:         " + listOfBookings.get(i).getBookingId());
+                System.out.println("Room Number:        " + listOfBookings.get(i).getRoomNumber());
+                System.out.println("Customer Name:      " + listOfBookings.get(i).getCustomerName());
+                System.out.println("Total Price:        " + listOfBookings.get(i).getTotalPrice());
+                System.out.println("Time of Check In:   " + listOfBookings.get(i).getCheckIn());
+                System.out.println("Time of Check Out:  " + listOfBookings.get(i).getCheckOut());
+                foundID = true;
+                System.out.println("Is this the booking you wish to remove? yes/no");
+                String select = input.nextLine();
+
+                switch (select){
+                    case "yes":{
+                        System.out.println("Booking with ID " + listOfBookings.get(i).getBookingId() + " has been " +
+                                "removed! (Press Enter to Continue)");
+                        listOfBookings.remove(i);
+                        input.nextLine();
+                        break;
+                    } case"no":{
+                        System.out.println("Booking was not removed. (Press Enter to Continue)");
+                        input.nextLine();
+                        break;
+                    }
+                }
+            }
+        }
+        if (!foundID){
+            System.out.println("No booking has that ID");
+            input.nextLine();
+        }
     }
 
     private void editBooking() {
