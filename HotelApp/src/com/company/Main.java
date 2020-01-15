@@ -39,8 +39,12 @@ public class Main {
         add(new Room(1, 2, 3, "yes", 1000, false));
         add(new Room(2, 3, 4, "no", 1500, false));
         add(new Room(3, 3, 5, "yes", 1900, false));
+        add(new Room(4, 2, 3, "no", 1000, false));
+        add(new Room(5, 3, 4, "no", 1500, false));
+        add(new Room(6, 2, 5, "yes", 1900, false));
+        add(new Room(7, 3, 3, "no", 1500, false));
     }};
-    private Date today = new Date(2019, 11, 25, 12, 14);
+    private Date today = new Date(2020,1, 16, 12, 14);
 
     Iterator<Booking> it = listOfBookings.iterator();
 
@@ -348,6 +352,7 @@ public class Main {
             input.nextLine();
             break;
         }
+                
 
     }
 

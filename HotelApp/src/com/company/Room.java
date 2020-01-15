@@ -14,7 +14,7 @@ public class Room {
     public Room(int roomNumber, int beds, int star, String hasBalcony, int price, boolean isBooked) {
         this.roomNumber = roomNumber;
         this.hasBalcony = hasBalcony;
-        this.isBooked = false;
+        this.isBooked = isBooked;
         if (beds == 1 || beds == 2 || beds == 3 || beds == 4) {
             this.beds = beds;
         } else {
