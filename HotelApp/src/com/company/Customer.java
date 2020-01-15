@@ -2,8 +2,7 @@ package com.company;
 
 public class Customer extends User {
 
-    private static int IdCounter;
-    private final int customerId = IdCounter++;
+    private final int customerId;
     private String firstName;
     private String lastName;
     private String SSN;
@@ -12,13 +11,14 @@ public class Customer extends User {
 
     public Customer(String userName, String password, boolean fullAccess,
                     String firstName, String lastName, String SSN, String address,
-                    String telephoneNumber) {
+                    String telephoneNumber, int customerId) {
         super(userName, password, fullAccess);
         this.firstName = firstName;
         this.lastName = lastName;
         this.SSN = SSN;
         Address = address;
         this.telephoneNumber = telephoneNumber;
+        this.customerId = customerId;
     }
 
     public int getCustomerId() {

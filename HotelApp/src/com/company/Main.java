@@ -23,15 +23,17 @@ public class Main {
     //Then you need to make another string: String newDate = sdf.format(cal.getTime())
 
     //arrays for adding user, booking, customer, and rooms
+
+    private int IdCounter;
     private final String passwordRegex = "((Dino)|(Jens)|(Gustav)|(Hassan))";
     private String userName = "";
     private ArrayList<User> listOfStaff = new ArrayList<>();
     private ArrayList<Booking> listOfBookings = new ArrayList<>();
     private ArrayList<Customer> listOfCustomer = new ArrayList<>() {{
         add(new Customer("Vladimir", "4321", false, "Vladidmir",
-                "Putin", "987654321", "Kremlin", "002002"));
+                "Putin", "987654321", "Kremlin", "002002", IdCounter++));
         add(new Customer("Donald", "1234", false, "Donald",
-                "Trump", "123456789", "White House", "001001"));
+                "Trump", "123456789", "White House", "001001", IdCounter++));
     }};
     private ArrayList<Room> listOfRooms = new ArrayList<>() {{
         add(new Room(1, 2, 3, "yes", 1000, false));
@@ -374,7 +376,8 @@ public class Main {
         System.out.println("What's the customer Phone Number?");
         phoneNumber = input.nextLine();
 
-        Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address, phoneNumber);
+        Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address
+                , phoneNumber, IdCounter++);
         listOfCustomer.add(newCustomer);
 
         System.out.println("New Customer added!");
@@ -409,12 +412,14 @@ public class Main {
                                 "removed! Press Enter to Continue");
                         listOfCustomer.remove(i);
                         input.nextLine();
+                        break;
                     }
                     case "n":
                     case "no": {
                         System.out.println("Customer with ID " + listOfCustomer.get(i).getCustomerId() + " has not been" +
                                 "removed! Press Enter to Continue");
                         input.nextLine();
+                        break;
                     }
                     default: {
                         System.out.println("Invalid Input. Answer yes/y or no/n");
