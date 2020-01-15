@@ -376,7 +376,8 @@ public class Main {
         System.out.println("What's the customer Phone Number?");
         phoneNumber = input.nextLine();
 
-        Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address, phoneNumber);
+        Customer newCustomer = new Customer(userName, password, false, firstName, lastName, ssn, address
+                , phoneNumber, IdCounter++);
         listOfCustomer.add(newCustomer);
 
         System.out.println("New Customer added!");
