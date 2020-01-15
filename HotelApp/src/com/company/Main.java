@@ -140,14 +140,8 @@ public class Main {
         System.out.println("| 1: View available rooms        |");
         System.out.println("| 2: View booking history        |");
         System.out.println("| 3: Make a new booking          |");
-<<<<<<< HEAD
-        System.out.println("| 4: Check out                   |");
-        System.out.println("| 5: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu        |");
-=======
         System.out.println("| 4: Cancel booking              |");
-        System.out.println("| 13: Exit to log in menu         |");
->>>>>>> e054a7872ac651514344ca99c98473482dabdf46
+        System.out.println("| 13: Exit to log in menu        |");
         menuInt = 1;
 
 
