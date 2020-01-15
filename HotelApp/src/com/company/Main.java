@@ -359,8 +359,7 @@ public class Main {
         String oldDate = sdf.format(cal.getTime());
         cal.add(Calendar.DAY_OF_MONTH, numberOfNights);
         String newDate = sdf.format(cal.getTime());
-        bookingId++;
-        Booking newBooking = new Booking(bookingId, loggedInCustomer, customerName, Integer.parseInt(customerSSN)
+        Booking newBooking = new Booking(bookingId++, loggedInCustomer, customerName, Integer.parseInt(customerSSN)
                 , listOfRooms.get(enteredNumber).getRoomNumber(), listOfRooms.get(enteredNumber).getPrice(), oldDate, newDate);
         listOfBookings.add(newBooking);
         listOfRooms.get(bookingId).getBooked(true);
@@ -612,8 +611,7 @@ public class Main {
 
                 findRoomWithId(roomNumber).setBooked(true);
 
-                bookingId++;
-                Booking newBooking = new Booking(bookingId, customerId, customerName, customerSSN, roomNumber, totalPrice, oldDate, newDate);
+                Booking newBooking = new Booking(bookingId++, customerId, customerName, customerSSN, roomNumber, totalPrice, oldDate, newDate);
 
                 listOfBookings.add(newBooking);
             }
