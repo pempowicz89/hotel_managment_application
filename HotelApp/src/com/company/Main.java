@@ -1009,7 +1009,7 @@ public class Main {
                 if (price != 1000 && price != 1500 && price != 1900 && price != 2200) {
                     System.out.println("\nThe options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 SEK");
                 }
-            } while (price == 1000 && price == 1500 && price == 1900 && price == 2200);
+            } while (price != 1000 && price != 1500 && price != 1900 && price != 2200);
             listOfRooms.get(index).setRoomNumber(roomNumber);
             listOfRooms.get(index).setBeds(beds);
             listOfRooms.get(index).setHasBalcony(hasBalcony);
@@ -1160,7 +1160,7 @@ public class Main {
                 if (price != 1000 && price != 1500 && price != 1900 && price != 2200) {
                     System.out.println("\nThe options for prices are 1000 SEK, 1500 SEK, 2000 SEK and 2200 SEK");
                 }
-            } while (price == 1000 && price == 1500 && price == 1900 && price == 2200);
+            } while (price != 1000 && price != 1500 && price != 1900 && price != 2200);
             listOfRooms.get(index).setPrice(price);
             System.out.println("\nRoom successfully updated");
         }
