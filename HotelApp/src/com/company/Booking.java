@@ -11,7 +11,8 @@ public class Booking {
     private String checkIn;
     private String checkOut;
 
-    public Booking(int bookingId, int customerId, String customerName, int customerSSN, int roomNumber, double totalPrice, String checkIn, String checkOut) {
+    public Booking(int bookingId, int customerId, String customerName, int customerSSN, int roomNumber,
+                   double totalPrice, String checkIn, String checkOut) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.customerName = customerName;

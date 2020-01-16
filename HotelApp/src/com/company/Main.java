@@ -36,13 +36,13 @@ public class Main {
                 "Trump", "123456789", "White House", "001001", IdCounter++));
     }};
     private ArrayList<Room> listOfRooms = new ArrayList<>() {{
-        add(new Room(1, 2, 3, "yes", 1000, false));
-        add(new Room(2, 3, 4, "no", 1500, false));
-        add(new Room(3, 3, 5, "yes", 1900, false));
-        add(new Room(4, 2, 3, "no", 1000, false));
-        add(new Room(5, 3, 4, "no", 1500, false));
-        add(new Room(6, 2, 5, "yes", 1900, false));
-        add(new Room(7, 3, 3, "no", 1500, false));
+        add(new Room(0, 2, 3, "yes", 1000, false));
+        add(new Room(1, 3, 4, "no", 1500, false));
+        add(new Room(2, 3, 5, "yes", 1900, false));
+        add(new Room(3, 2, 3, "no", 1000, false));
+        add(new Room(4, 3, 4, "no", 1500, false));
+        add(new Room(5, 2, 5, "yes", 1900, false));
+        add(new Room(6, 3, 3, "no", 1500, false));
     }};
     private Date today = new Date(2020,1, 16, 12, 14);
 
@@ -132,7 +132,7 @@ public class Main {
         System.out.println("Login Menu");
         System.out.println("--------------------");
         System.out.println("| 1.Staff login          |");
-        System.out.println("| 2.Customer login       |");
+//        System.out.println("| 2.Customer login       |");
         System.out.println("| 3.Exit                 |");
         System.out.println("--------------------");
 
