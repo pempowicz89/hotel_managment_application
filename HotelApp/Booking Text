@@ -1,0 +1,1 @@
+Booking ID: 0, Total Price: 7600.0, Room Number: 2, Customer Id: 1, Customer SSN: 123456789, Customer Name: Donald Trump, Checkout: Mon, 20-01-2020 10:20:31 CET, Checkin: " + b.getCheckIn()

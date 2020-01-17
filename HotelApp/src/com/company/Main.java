@@ -1,6 +1,8 @@
 package com.company;
 
 
+import javax.tools.FileObject;
+import java.io.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -167,6 +169,7 @@ public class Main {
         System.out.println("| 11. Search For All Booking    |");
         System.out.println("| 12. Add booking               |");
         System.out.println("| 13. Back                      |");
+        System.out.println("| 14. Write Booking Data to File|");
         System.out.println("---------------------------------");
         menuInt = 0;
     }
@@ -210,6 +213,8 @@ public class Main {
                     hotelApp.searchForAllBookings();
                 } else if (select == 12) {
                     hotelApp.addBooking();
+                } else if (select == 14) {
+                    hotelApp.printText();
                 }
             } else if (menuInt == 1) {
                 if (select == 1) {
@@ -261,6 +266,31 @@ public class Main {
         }
     }
 
+
+    private void printText(){
+        BufferedWriter writer = null;
+        try {
+            for (Booking b: listOfBookings) {
+                String bookingText;
+                File logFile = new File("Booking Text");
+
+                System.out.println(logFile.getCanonicalPath());
+
+                writer = new BufferedWriter(new FileWriter(logFile));
+                writer.write("Booking ID: " + b.getBookingId() + ", Total Price: " + b.getTotalPrice()
+                                + ", Room Number: " + b.getRoomNumber() + ", Customer Id: " + b.getCustomer()
+                                + ", Customer SSN: " + b.getCustomerSSN() + ", Customer Name: " + b.getCustomerName()
+                                + ", Checkout: " + b.getCheckOut() + ", Checkin: " + b.getCheckIn());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                writer.close();
+            } catch (IOException e) {
+            }
+        }
+    }
 
     private void bookingHistory() {
 
