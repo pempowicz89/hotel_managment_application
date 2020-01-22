@@ -134,7 +134,7 @@ public class Main {
         System.out.println("Login Menu");
         System.out.println("--------------------");
         System.out.println("| 1.Staff login          |");
-//        System.out.println("| 2.Customer login       |");
+        System.out.println("| 2.Customer login       |");
         System.out.println("| 3.Exit                 |");
         System.out.println("--------------------");
 
